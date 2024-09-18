@@ -164,7 +164,13 @@ SELECT
 
 SELECT * FROM #Category
 
+/* Join Query */
 
+SELECT 
+	 *
+	,LEAD(EffectiveDate,1,'9999-12-31') OVER (PARTITION BY CustomerId ORDER BY EffectiveDate ASC) AS EffectiveBeforeDate
+FROM 
+(
 /* Customer perspective*/
 SELECT
   cust.EffectiveDate
@@ -214,4 +220,5 @@ INNER JOIN
 ) cust
 ON cat.CategoryID = cust.CategoryID 
 AND cat.EffectiveDate >= cust.START_DATE_KEY AND cat.EffectiveDate < cust.END_DATE_KEY  
+) final
 ORDER BY 1

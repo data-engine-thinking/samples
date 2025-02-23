@@ -1,0 +1,1 @@
+# Persistent staging area pattern

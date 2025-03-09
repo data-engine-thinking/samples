@@ -1,6 +1,7 @@
 # Hub Solution pattern example
 ## Example pattern for a Hub process
 
+```sql
 INSERT INTO [Hub_Customer]
 (
 	[Customer_Sk],
@@ -34,3 +35,4 @@ FROM
 	) sub
 ) supersub
 WHERE Arrival_Order = 1
+```

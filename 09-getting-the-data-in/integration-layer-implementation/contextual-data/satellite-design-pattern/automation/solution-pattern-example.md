@@ -1,6 +1,5 @@
-# Testing
+# Satellite solution pattern example
 
-- **Notification**: Control framework notifications: [example](notification.md).
-- **Uniqueness**: Uniqueness controls: [example](uniqueness.md).
-- **Completeness**: Completeness in temporality: [example](completness.md).
-- **Referential integrity**: [example](referential-integrity.md).
+- **Preparing the Satellite**: [example](preparing-the-satellite.md).
+- **Loading an unitemporal Satellite**: [example](loading-an-unitemporal-satellite.md).
+- **Loading a bitemporal Satellite**: [example](loading-a-bitemporal-satellite.md).

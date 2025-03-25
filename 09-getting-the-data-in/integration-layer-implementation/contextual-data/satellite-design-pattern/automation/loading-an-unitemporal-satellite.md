@@ -4,12 +4,13 @@
 INSERT INTO [Sat Customer]
 (
     [CUSTOMER_SK],
-    [Audit_Trail_Id],
     [Inscription_Timestamp],
     [Inscription_Record_Id],
+    [State_From_Timestamp],
+    [State_Before_Timestamp],
     [Change_Data_Indicator],
     [Checksum],
-    [State_From_Timestamp],
+    [Audit_Trail_Id],
     [CUSTOMER_FIRST_NAME],
     [CUSTOMER_DATE_OF_BIRTH]
 )
@@ -19,12 +20,13 @@ FROM
 (
     SELECT
     compacting_selection.[CUSTOMER_SK],
-    Compacting_selection.[Audit_Trail_Id],
     compacting_selection.[Inscription_Timestamp],
     compacting_selection.[Inscription_Record_Id],
+    compacting_selection.[State_From_Timestamp],
+    compacting_selection.[State_Before_Timestamp],
     compacting_selection.[Change_Data_Indicator],
     compacting_selection.[Checksum],
-    compacting_selection.[State_From_Timestamp],
+    Compacting_selection.[Audit_Trail_Id],
     compacting_selection.[CUSTOMER_FIRST_NAME],
     compacting_selection.[CUSTOMER_DATE_OF_BIRTH],
     CAST(ROW_NUMBER() OVER (
@@ -37,7 +39,7 @@ FROM
     target_object.[Change_Data_Indicator] AS [Lookup_Change_Data_Indicator]
     FROM
     (
-        <compacting selection>
+        <Compacting selection>
     ) compacting_selection
     -- Prevent reprocessing
     LEFT OUTER JOIN [Sat Customer] target_object
@@ -48,7 +50,8 @@ FROM
 ) final
 -- Change merging
 WHERE
-(   KEY_ROW_NUMBER = 1
+(
+   KEY_ROW_NUMBER = 1
     AND (( [Checksum] != [Lookup_Checksum] )
         -- The checksums are different
         OR ( [Checksum] = [Lookup_Checksum]
@@ -57,6 +60,8 @@ WHERE
         )
 )
 OR
-(-- It's not the most recent change in the set, so the record can be inserted as-is
-    KEY_ROW_NUMBER != 1)
+(
+    -- It's not the most recent change in the set, so the record can be inserted as-is
+    KEY_ROW_NUMBER != 1
+)
 ```

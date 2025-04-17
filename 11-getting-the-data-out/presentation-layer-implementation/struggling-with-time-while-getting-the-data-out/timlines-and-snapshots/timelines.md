@@ -1,4 +1,4 @@
-# Time periods
+# Timelines
 
 - **Joining two time-variant objects**: [example](joining-two-time-variant-objects.md).
 - **Combining multiple time-variant objects**: [example](combining-multiple-time-variant-objects.md).

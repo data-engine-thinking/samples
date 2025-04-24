@@ -1,4 +1,5 @@
-# Design metadata example
+# Landing area
+# Solution metadata example
 
 ```sql
 TRUNCATE <LDA Data Object>

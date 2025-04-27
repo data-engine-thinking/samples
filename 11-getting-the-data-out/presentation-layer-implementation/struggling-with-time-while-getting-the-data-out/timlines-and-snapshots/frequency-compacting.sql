@@ -36,40 +36,22 @@ GO
 SELECT *
 FROM FastChangeCoData;
 
--- Continuous Gap Compacting
-
--- Organize the values within the selected frequency
--- Calculate the time difference with the next row (lead ascending)
-SELECT * FROM
+-- Frequency Compacting
+SELECT *
+FROM
 (
-  SELECT 
+  SELECT
     [Surrogate_Key],
     [From_Timestamp],
-    DATEDIFF (
-	  MINUTE,
-      [From_Timestamp],
-      LEAD([From_Timestamp])
-        OVER (PARTITION BY [Surrogate_Key]
-          ORDER BY [From_Timestamp])
-      ) AS [Gap_Minutes]
+    FIRST_VALUE([From_Timestamp])
+      OVER (PARTITION BY [Surrogate_Key],
+            DATEPART(YEAR,[From_Timestamp]),
+            DATEPART(MONTH,[From_Timestamp]),
+            DATEPART(DAY,[From_Timestamp]),
+            DATEPART(HOUR,[From_Timestamp])
+            ORDER BY [From_Timestamp] DESC)
+      AS [Time_Compacter]
   FROM FastChangeCoData
-) t
-WHERE [Gap_Minutes] >= 30
-   OR [Gap_Minutes] IS NULL
-;
-
-/*
-SELECT [Surrogate_Key],
-       [From_Timestamp],
-       LEAD([From_Timestamp]) OVER (
-                       PARTITION BY [Surrogate_Key]
-                       ORDER BY [From_Timestamp])
-        AS Lead_From_Timestamp,
-       DATEDIFF (MINUTE,
-                 [From_Timestamp],
-                 LEAD([From_Timestamp]) OVER (
-                       PARTITION BY [Surrogate_Key]
-                       ORDER BY [From_Timestamp])
-       )
-FROM FastChangeCoData
-*/
+) sub
+  -- Add the filter to apply compacting
+WHERE [From_Timestamp] = [Time_Compacter]

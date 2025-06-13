@@ -12,7 +12,7 @@ Data is evidence of past activity — frozen moments in time, waiting to be unco
 
 A truly effective data solution must evolve alongside our understanding, supported by a structured approach, automation, and code generation.
 
-Data Engine Thinking presents an end-to-end methodology for designing and delivering data solutions that can evolve. This book guides you on a journey with FastChangeCo, a fictitious company struggling to keep up with today’s business demands. Faced with an increasingly complex and fast-changing system landscape, they embark on a mission to develop a future-proof data solution — one that accelerates the implementation of new requirements and overcomes integration challenges.
+Data Engine Thinking presents an end-to-end methodology for designing and delivering data solutions that can evolve. This book guides you on a journey with *FastChangeCo*, a fictitious company struggling to keep up with today’s business demands. Faced with an increasingly complex and fast-changing system landscape, they embark on a mission to develop a future-proof data solution — one that accelerates the implementation of new requirements and overcomes integration challenges.
 Supported by detailed conceptual and practical explanations, we follow FastChangeCo as they transform their fragmented, inflexible data platforms into a solution that fully meets the business’ needs.
 
 Along the way, you’ll learn how to:

@@ -1,4 +1,4 @@
-# Schema definition
+# Schema Definition
 
 The repository for the schema for data solution automation is available in the [data solution automation schema](https://github.com/data-solution-automation-engine/data-warehouse-automation-metadata-schema) repository.
 

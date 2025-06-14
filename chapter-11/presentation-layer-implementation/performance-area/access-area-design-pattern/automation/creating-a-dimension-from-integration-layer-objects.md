@@ -1,4 +1,4 @@
-# Creating a dimension from integration layer objects
+# Creating A Dimension From Integration Layer Objects
 
 ```sql
 SELECT

@@ -1,21 +1,17 @@
-/*
-
-.SYNOPSIS
-    Create data objects for FastChangeCo MVP
-
-.DESCRIPTION
-    Create data objects for FastChangeCo MVP
-
-.NOTES
-    (C) 2024 Data Engine Thinking
-    File Name      : create source data objects DataEngineThinking.sql
-    Prerequisite   : MS SQL Server
-    Author         : Roelant Vos & Dirk Lerner
-    License        :
-    Version        : 1.0.0
-    Date           : 20240909
-
-*/
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * https://dataenginethinking.com/
+ *
+ * Purpose:
+ *   - Create sample source data objects to integrate into the data solution
+ *
+ * This code is provided as is, without warranty of any kind. 
+ * Use it at your own risk. We make no guarantees about its suitability, reliability, or accuracy.
+ * We are not responsible for any damages or issues that may arise from using, modifying, or distributing this code.
+ *
+ ******************************************************************************/
 
 USE [DataEngineThinking]
 

@@ -1,11 +1,17 @@
+# Continuous Gap Compacting
+
+The following example provides runnable code to showcase the contiuous gap compacting concept as documented in Data Engine Thinking.
+
+```sql
 -- DDL for table creation
 DROP TABLE IF EXISTS FastChangeCoData;
 
-CREATE TABLE FastChangeCoData (
-    Surrogate_Key NVARCHAR(50),
-    From_Timestamp DATETIME,
-    Satellite_1_Value NVARCHAR(50),
-	Satellite_2_Value NVARCHAR(50)
+CREATE TABLE FastChangeCoData
+(
+  Surrogate_Key NVARCHAR(50),
+  From_Timestamp DATETIME,
+  Satellite_1_Value NVARCHAR(50),
+  Satellite_2_Value NVARCHAR(50)
 );
 
 -- INSERT statements for the data
@@ -73,3 +79,4 @@ SELECT [Surrogate_Key],
        )
 FROM FastChangeCoData
 */
+```

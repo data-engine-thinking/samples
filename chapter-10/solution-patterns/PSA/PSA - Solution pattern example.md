@@ -1,3 +1,6 @@
+# Solution Pattern Example - PSA
+
+```sql
 --------------------------------------------------------------------------------
 -- PSA solution pattern
 -- Version in book
@@ -98,3 +101,4 @@ ORDER BY ModelCode,EntityClassCode, InscriptionTimestamp, InscriptionRecordID
 -- 2) maxInscriptionTimestamp and maxInscriptionRecordID do not corelate since a lower InscriptionTimestamp contains maxInscriptionRecordID
 -- 3) rownum - if InscriptionRecordID not sorted in table
 -- 4) reinsert deleted record
+```

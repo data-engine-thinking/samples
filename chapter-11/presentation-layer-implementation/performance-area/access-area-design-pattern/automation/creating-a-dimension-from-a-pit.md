@@ -1,4 +1,4 @@
-# Creating a dimension from a PIT
+# Creating A Dimension From A PIT
 
 ```sql
 SELECT

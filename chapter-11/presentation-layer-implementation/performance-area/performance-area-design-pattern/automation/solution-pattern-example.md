@@ -1,7 +1,7 @@
-# Performance area
-## Solution pattern example
+# Performance Area Solution Pattern Example
 
-### Example timeline-based PIT
+## Timeline-Based PIT
+
 ```sql
 SELECT
   -- New timeline

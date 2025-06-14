@@ -1,6 +1,7 @@
 # Domain-Specific Languages
 
 ## A DSL example
+
 This can be demonstrated with a sample template script that uses the Biml DSL. Consider the code below, a mixture of C# and the template using Biml (XML) syntax.
 
 ```XML

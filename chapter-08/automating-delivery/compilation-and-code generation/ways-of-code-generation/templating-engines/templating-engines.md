@@ -19,3 +19,7 @@ As an example, consider these syntax differences between Handlebars and Jinja.
 | **Else**           | `{{#if is_admin}}Yes{{else}}No{{/if}}`           | `{% if is_admin %}Yes{% else %}No{% endif %}`       |
 | **Loop**           | `{{#each items}}<li>{{this}}</li>{{/each}}`      | `{% for item in items %}<li>{{ item }}</li>{% endfor %}` |
 | **Function / Logic** | *Not allowed in template* (must pre-process)   | `{% set total = price * quantity %}`                |
+
+## Giving It A Go
+
+The template samples directory in this repository provides examples taken from the 

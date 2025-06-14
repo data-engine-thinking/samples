@@ -1,6 +1,6 @@
-# Control frameworks
+# Control Frameworks
 
-## Available frameworks
+## Available Frameworks
 
 ### DIRECT
 

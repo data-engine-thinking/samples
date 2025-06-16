@@ -4,8 +4,8 @@ This repository complements [Data Engine Thinking](https://dataenginethinking.co
 
 Get your copy of Data Engine Thinking today!
 
-*	Softcover: [dtng.link/amz-sc](dtng.link/amz-sc)
-*	eBook: [dtng.link/amz-eb](dtng.link/amz-eb)
+*	Softcover: [dtng.link/amz-sc](https://dtng.link/amz-sc)
+*	eBook: [dtng.link/amz-eb](https://dtng.link/amz-eb)
 
 ## About Data Engine Thinking
 

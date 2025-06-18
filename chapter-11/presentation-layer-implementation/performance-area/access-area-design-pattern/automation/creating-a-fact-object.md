@@ -1,4 +1,4 @@
-# Creating a fact object
+# Creating A Fact Object
 
 ```sql
 SELECT

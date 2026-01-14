@@ -44,7 +44,7 @@ When comparing datasets, either by using a checksum or attribute comparison, the
 Consequences
 The Full Outer Join mechanism is an easy to manage interface type that has little overhead in terms of system control.
 The effectivity of the Full Outer Join mechanism is dependent on the record counts in the tables being sourced via this interface. For (very) big datasets the Full Outer Join is not the ideal mechanism and for this reason it is not scalable to big datasets (with the exception of MPP platforms).
-Compared to other Source-to-Staging mechanisms the Full Outer Join is relatively inaccurate to detect the actual moment that changes occurred in the operational system (Event timestamp) as the detected change is related to the execution time.
+Compared to other Source-to-Staging mechanisms the Full Outer Join is relatively inaccurate to detect the actual moment that changes occurred in the operational system (source timestamp) as the detected change is related to the execution time.
 The design decision to only load the delta record set into the Landing Area ensures that subsequent processes are all handled the same way, as most source-to-staging mechanism are delta based.
 By its nature, the Full Outer Join can only provide a single snapshot / historical interval for each run. This is opposed to more granular transaction log based Change Data Capture mechanisms which capture all changes that have occurred and typically contain multiple changes for a single key in the Landing Area before it is processed further.
 

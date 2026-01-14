@@ -11,3 +11,5 @@ Key characteristics of bitemporal Satellites:
 - Provides complete temporal flexibility for regulatory and analytical requirements
 
 Bitemporal Satellites are essential when source systems provide reliable business effective dates and when business requirements demand the ability to query data as it was known at any point in time.
+
+Bitemporal modeling combines both the assertion timeline (inscription timestamp) and state timeline (source timestamp). For more details on these concepts, see [Assertion and State Timelines](xref:design-pattern-generic-assertion-and-state-timelines).

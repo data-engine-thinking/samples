@@ -35,7 +35,7 @@ Standard Link-Satellites use the Driving Key concept to manage the ending of old
 
 * Identify the driving key for the Link; use it to manage effective/expiry dates in the Link-Satellite.
 * Insert-only SCD2 pattern: close the current record (set expiry), insert a new record when the driving key/value combination changes.
-* Carry metadata from the Link (load timestamps, source identifiers) to keep lineage intact.
+* Carry metadata from the Link (inscription timestamps, source identifiers) to keep lineage intact.
 * Use hash keys/checksums to detect attribute changes when applicable; avoid unnecessary updates.
 * Keep Link-Satellites narrow—store only relationship attributes (e.g., status, type, reason) and not Hub-level attributes.
 

@@ -17,7 +17,7 @@ This impacts how history is stored: the effective period changes as well as some
 This type of data logistics implementation is valid in any situation where logical deletes are captured, in tables that store or represent a historical view of information such as the Persistent Staging Area, and most of the Integration and Presentation Layer tables.
 
 ## Structure
-Essentially the logical delete is handled as an insert/update to the target table. This means that a new row is inserted using the Load timestamp Stamp as the Effective Date of the new record.
+Essentially the logical delete is handled as an insert/update to the target table. This means that a new row is inserted using the inscription timestamp as the effective date of the new record.
 
 This concept introduces the Deleted Row Indicator. The effective record will be closed (updated) and the new record with the delete indicator will become the new valid and most recent record from then on for eternity or until the record will be reopened by the source.
 This also means that the new record which contains the 'deleted' indicator will contain all the information / attribute values from when the record was last active.

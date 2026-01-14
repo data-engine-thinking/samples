@@ -4,9 +4,6 @@ uid: design-pattern-staging-layer-landing-area
 
 # Design Pattern - Staging Layer - Landing Area Guidelines
 
-> [!WARNING]
-> This design pattern requires a major update to refresh the content.
-
 ## Purpose
 
 This Design Pattern describes how to load data from source systems into the landing area of the staging layer.
@@ -46,7 +43,7 @@ The data logistics process can be described as a truncate/insert process which c
 
 The key points of interest are:
 
-* Defining the correct event timestamp as part of the data logistics process.
+* Defining the correct source timestamp as part of the data logistics process.
 * Using a character string to indicate the record source.
 * Perform data type streamlining:.
   * Text fields smaller or equal than 100 will be mapped to NVARCHAR (100).
@@ -69,8 +66,8 @@ The structure of the Landing Area therefore is the same as the source table, but
 
 | Column Name              | **Required / Optional** | **Data Type / constraint**                            | **Reasoning**                                                | **DIRECT equivalent**     |
 | ------------------------ | ----------------------- | ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------- |
-| Load timestamp Stamp     | Required                | High precision timestamp   – not null                 | The timestamp that the record has been presented to the Data Warehouse environment. |                           |
-| Event timestamp          | Required                | High precision timestamp   – not null                 | The timestamp the change occurred in the source system.      | Event Datetime            |
+| Inscription timestamp    | Required                | High precision timestamp   – not null                 | The timestamp that the record was first inscribed into the data solution. | Inscription Datetime      |
+| Source timestamp         | Required                | High precision timestamp   – not null                 | The timestamp the change occurred in the source system.      | Source Datetime           |
 | Source System ID / Code  | Required                | Varchar(100) – not null                               | The code or ID for the source system that supplied the data. | Record Source             |
 | Source Row ID            | Required                | Integer – not null                                    | Audit attribute that captures the row order within the data delta as provided by a unique data logistics execution. The combination of the unique execution instance and the row ID will always relate back to a single record. Also used to distinguish order if the effective timestamp itself is not unique for a given key (due to fast-changing data). | Source Row ID             |
 | CDC Operation            | Required                | Varchar(100) – not null                               | Information derived or received by the data logistics process to derive logical deletes. | CDC Operation             |

@@ -9,3 +9,5 @@ Three primary approaches exist for modeling time in Satellites:
 - **Bitemporal**: Tracks both inscription timestamps and business effective dates: [example](bitemporal.md).
 
 The appropriate choice depends on business requirements, source system capabilities, and the need for temporal analysis and auditability.
+
+For a detailed explanation of the underlying temporal concepts, see [Assertion and State Timelines](xref:design-pattern-generic-assertion-and-state-timelines).

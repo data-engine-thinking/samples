@@ -6,6 +6,7 @@ Every Design Pattern follows the common layout described in [Pattern Structure](
 
 ## Data Vault
 
+- [Data Vault Hub](design-pattern-data-vault-hub.md)
 - [Data Vault Satellite](design-pattern-data-vault-satellite.md)
 - [Data Vault Link](design-pattern-data-vault-link.md)
 - [Data Vault Link Satellite](design-pattern-data-vault-link-satellite.md)
@@ -19,6 +20,7 @@ Every Design Pattern follows the common layout described in [Pattern Structure](
 
 ## Generic
 
+- [Assertion and State Timelines](design-pattern-generic-assertion-and-state-timelines.md)
 - [Control Framework](design-pattern-generic-control-framework.md)
 - [Data Extraction from Operational Systems](design-pattern-generic-data%20extraction%20from%20internal%20systems.md)
 - [Integration into the Data Solution](design-pattern-generic-data-integration-into-a-data-warehouse.md)

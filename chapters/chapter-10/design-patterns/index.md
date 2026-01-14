@@ -1,4 +1,8 @@
 # Design Patterns
 
-- [Staging Layer - Landing Area](design-pattern-staging-layer-landing-area.md)
-- [Staging Layer - Persistent Staging Area](design-pattern-staging-layer-persistent-staging-area.md)
+The following design patterns are used in the FastChangeCo samples:
+
+- [Staging Layer - Landing Area](xref:design-pattern-staging-layer-landing-area)
+- [Staging Layer - Persistent Staging Area](xref:design-pattern-staging-layer-persistent-staging-area)
+
+For the complete design pattern library, see the [Patterns](xref:patterns) section.

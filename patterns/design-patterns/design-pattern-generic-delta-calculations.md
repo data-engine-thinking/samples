@@ -35,7 +35,7 @@ The data logistics process can be described as an 'insert only' set of the uniqu
 * Identify deltas up front (distinct business keys not yet in Hub) to minimize scans; use staging high-water marks if available.
 * Run Hub loads before dependent Satellite/Link loads; additional passes can then rely on the newly inserted keys.
 * The designated business key (usually the source natural key) is the only non-process attribute in the Hub.
-* Carry the staging Load timestamp into the Hub for consistent timing; avoid stamping with data logistics execution time.
+* Carry the staging inscription timestamp into the Hub for consistent timing; avoid stamping with data logistics execution time.
 
 ## Considerations and consequences
 

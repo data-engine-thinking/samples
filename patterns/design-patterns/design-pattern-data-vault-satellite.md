@@ -4,9 +4,6 @@ uid: design-pattern-data-vault-satellite
 
 # Design Pattern - Data Vault - Satellite
 
-> [!WARNING]
-> This design pattern requires a major update to refresh the content.
-
 ## Purpose
 
 This Design Pattern describes how to represent, or load data into, Satellite tables using Data Vault methodology.
@@ -27,8 +24,18 @@ Interpretation Area Satellites may add business logic, but follow the same struc
 ## Structure
 
 The data logistics process can be described as a slowly changing dimension / history update of all attributes except the business key (which is stored in the Hub table). Most attribute values, including some of the data logistics process control values are copied from the Landing Area table. This includes:
-Load Date / Time Stamp (used for the target Effective Date / Time and potentially the Update Date / TimeE attributes).
-Source Row Id.
+
+- Inscription timestamp (used for the target effective timestamp and potentially the update timestamp attributes).
+- Source Row Id.
+
+### Optional attributes
+
+The following attributes are commonly included in Satellite tables but are technically optional:
+
+- **Record Source**: Can be derived from the Audit Trail Id via the control framework. Including it as a separate column provides query convenience but introduces redundancy.
+- **Inscription Timestamp**: While recommended for auditability and temporal queries, this can be derived from the control framework if the Audit Trail Id is present.
+
+The Audit Trail Id provides the essential link to the control framework, from which all process metadata can be obtained. Organizations typically include Inscription Timestamp directly in Satellites for efficient temporal querying, but this is a design choice.
 
 ## Implementation guidelines
 
@@ -49,17 +56,5 @@ Source Row Id.
 * [Design Pattern - Data Vault - Hub](xref:design-pattern-data-vault-hub).
 * [Design Pattern - Data Vault - Link](xref:design-pattern-data-vault-link).
 * [Design Pattern - Generic - Using checksums for row comparison](xref:design-pattern-generic-using-checksums).
-
-If you have a Change Data Capture based source, the attribute comparison is not required because the source system supplies the information whether the record in the Landing Area is new, updated or deleted.
-
-Use hash values to detect changes, instead of comparing attributes separately. The hash value is created from all attributes except the business key and data logistics process control values.
-
-## Considerations and consequences
-
-Multiple passes on source data are likely to be required.
-
-## Related patterns
-
-Design Pattern 006 - Generic - Using Start, Process and End Dates
-Design Pattern 009 - Data Vault - Loading Satellite tables
-Design Pattern 010 - Data Vault - Loading Link tables
+* [Design Pattern - Generic - Assertion and State Timelines](xref:design-pattern-generic-assertion-and-state-timelines).
+* [Design Pattern - Generic - Managing Multi-Temporality](xref:design-pattern-generic-managing-multi-temporality).

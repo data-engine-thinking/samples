@@ -28,7 +28,7 @@ This pattern is only applicable for loading processes from source systems or fil
 
 Depending on the nature of the source data, the following situation may occur. In this example these are the original records as they appear in the source system:
 
-| Key | Value            | Event Date Time   |
+| Key | Value            | Source Timestamp   |
 |-----|------------------|-------------------|
 | CHS | Cheese           | 2011-10-28 15:00  |
 | CHS | Cheese - Yellow  | 2011-11-29 11:00  |
@@ -36,9 +36,9 @@ Depending on the nature of the source data, the following situation may occur. I
 | CHS | Cheese - Yellow  | 2011-11-29 17:00  |
 | CHS | Cheese           | 2011-11-29 23:00  |
 
-In this example a user changes the name of the product with key `CHS` multiple times in a single day and afterwards resets the value to the original value. If the data logistics interval is daily, only these two values are selected from the source (with the load timestamp stamp being the event timestamp):
+In this example a user changes the name of the product with key `CHS` multiple times in a single day and afterwards resets the value to the original value. If the data logistics interval is daily, only these two values are selected from the source (with the inscription timestamp being the source timestamp):
 
-| Key | Value  | Event Date Time   |
+| Key | Value  | Source Timestamp   |
 |-----|--------|-------------------|
 | CHS | Cheese | 2011-10-28 15:00  |
 | CHS | Cheese | 2011-11-29 23:00  |

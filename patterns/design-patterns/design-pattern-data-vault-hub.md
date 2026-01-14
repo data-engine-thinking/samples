@@ -48,6 +48,15 @@ The designated business key (sometimes the source natural key, but not always!) 
 
 The Inscription Timestamp is copied (inherited) from the Staging Layer. This improves data logistics flexibility. The Landing Area data logistics is designed to label every record which is processed by the same module with the correct timestamp, indicating when the record has been loaded into the Data Warehouse environment. The data logistics process control framework will track when records have been loaded physically through the Audit Trail Id.
 
+### Optional attributes
+
+The following attributes are commonly included in Hub tables but are technically optional:
+
+- **Record Source**: Can be derived from the Audit Trail Id via the control framework, which maintains the complete lineage of each record. Including Record Source as a separate column provides convenience for querying but introduces redundancy.
+- **Inscription Timestamp**: While recommended for auditability, this can also be derived from the control framework if the Audit Trail Id is present.
+
+The Audit Trail Id is the essential link to the control framework, from which all other process metadata can be obtained. Organizations may choose to denormalize Record Source and Inscription Timestamp for query convenience, but this is a design choice rather than a requirement.
+
 Multiple data logistics processes may load the same business key into the corresponding Hub table if the business key exists in more than one table. This also means that data logistics software must implement dynamic caching to avoid duplicate inserts when running similar processes in parallel.
 
 By default the DISTINCT function is executed on database level to reserve resources for the data logistics engine, but this can be executed inline in data logistics as well if this supports proper resource distribution (i.e. light database server but powerful data logistics server).
@@ -56,7 +65,7 @@ The logic to create the initial (dummy) zero key record can both be implemented 
 
 When modeling the Hub tables try to be conservative when defining the business keys. Not every foreign key in the source indicates a business key and therefore a Hub table. A true business key is a concept that is known and used throughout the organization (and systems) and is self-standing and meaningful.
 
-To cater for a situation where multiple Load Date / Time stamp values exist for a single business key, the minimum Load Date / Time stamp should be the value passed through with the HUB record. This can be implemented in data logistics logic, or passed through to the database.  When implemented at a database level, instead of using a SELECT DISTINCT, using the MIN function with a GROUP BY the business key can achieve both a distinct selection, and minimum Load Date / Time stamp in one step.
+To cater for a situation where multiple inscription timestamp values exist for a single business key, the minimum inscription timestamp should be the value passed through with the Hub record. This can be implemented in data logistics logic, or passed through to the database. When implemented at a database level, instead of using a SELECT DISTINCT, using the MIN function with a GROUP BY the business key can achieve both a distinct selection and minimum inscription timestamp in one step.
 
 ## Considerations and consequences
 

@@ -1,13 +1,8 @@
-# Design and Solution Patterns
+# Data Engine Thinking Samples
 
-A curated library of reusable design patterns and solution patterns that support the [Data Engine Thinking](https://dataenginethinking.com/en/) approach (as described in the book).
+A curated library of sample code, design patterns, and solution patterns that support the [Data Engine Thinking](https://dataenginethinking.com/en/) approach (as described in the book).
 
-In Data Engine Thinking, a data solution is defined by the architecture you choose and the patterns you apply:
-
-* Design patterns capture concepts, decisions, and best practices (the 'what' and 'why', supported by guidance on how to apply it in a technology-agnostic way).
-* Solution patterns provide implementation guides for a specific stack or environment (the 'how', in a concrete, technical form).
-
-These patterns are intended to evolve continuously: improved, expanded, refined, and added as new lessons and practices emerge.
+These examples and patterns are intended to evolve continuously: improved, expanded, refined, and added as new lessons and practices emerge.
 
 > [!NOTE]
 > This library is intentionally 'living'. If you spot gaps, have improvements, or want to add a new pattern, we’d love your help. Please submit a Pull Request with your proposed changes. Small edits (typos, clarity, examples) are just as valuable as new patterns.
@@ -26,7 +21,14 @@ This repository supports step 2 (and helps make step 3 repeatable).
 
 On several occasions, the patterns mention other frameworks, for instance the control framework for data logistics. An example of this is the DIRECT framework as maintained in the [DIRECT repository](https://github.com/data-solution-automation-engine/DIRECT).
 
-## Design Patterns
+## Patterns
+
+In Data Engine Thinking, a data solution is defined by the architecture you choose and the patterns you apply:
+
+* Design patterns capture concepts, decisions, and best practices (the 'what' and 'why', supported by guidance on how to apply it in a technology-agnostic way).
+* Solution patterns provide implementation guides for a specific stack or environment (the 'how', in a concrete, technical form).
+
+### Design Patterns
 
 A design pattern describes a concept and how to apply it. It is the primary tool for a data solution architect to design, reason about, and govern the solution over time.
 
@@ -41,7 +43,7 @@ Design patterns are technology-agnostic by default so they remain relevant as pl
 
 Examples include: essential data logistics requirements, handling logical deletes, key distribution, temporal/time-variant modelling, and methodology-specific patterns such as loading contextual data in Data Vault.
 
-## Solution Patterns
+### Solution Patterns
 
 A solution pattern is an implementation guide for a specific technology stack or environment. Where a design pattern defines the concept and the intent, a solution pattern defines the concrete execution.
 

@@ -1,3 +1,7 @@
+---
+uid: patterns
+---
+
 # Patterns
 
 This section contains design patterns and solution patterns for data engineering.

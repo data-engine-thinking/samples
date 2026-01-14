@@ -4,9 +4,6 @@ uid: design-pattern-staging-layer-persistent-staging-area
 
 # Design Pattern - Staging Layer - Persistent Staging Area
 
-> [!WARNING]
-> This design pattern requires a major update to refresh the content.
-
 ## Purpose
 
 This Design Pattern describes how to process data from the Landing Area (LND) to the Persistent Staging Area (PSA) - also known as the Persistent Staging Area (PSA).
@@ -40,7 +37,7 @@ The structure of the PSA tables is similar to the LND tables, with the exception
 
 * The Primary Key is a composite of:.
 * The source natural key.
-* The Load Date / Time Stamp (Insert timestamp).
+* The Inscription timestamp.
 * The Source Row ID.
 * The attributes that are part of the key are not nullable (e.g. the source natural key columns).
 
@@ -48,7 +45,7 @@ An optional Current Record Indicator may be added.
 
 Some attribute may be removed from PSA (non-standard).
 
-The reason the Primary Key is composite is to track the changes to records over time as per the Load Date / Time stamp (the time recorded when the record is loaded into the Data Warehouse environment). In principle, only having the natural key and Load Date / Time is sufficient. But in some scenarios the speed of records being presented to the Data Warehouse is so fast that the Load Date / Time may not be unique (due to accuracy limitations of the high precision timestamp data type), and due to this the Source Row ID is also added the key. This obviously relies on the interface (source to Staging) manages the order in which data arrives to ensure a deterministic process.
+The reason the Primary Key is composite is to track the changes to records over time as per the inscription timestamp (the time recorded when the record is inscribed into the data solution). In principle, only having the natural key and inscription timestamp is sufficient. But in some scenarios the speed of records being presented to the data solution is so fast that the inscription timestamp may not be unique (due to accuracy limitations of the high precision timestamp data type), and due to this the Source Row ID is also added the key. This obviously relies on the interface (source to Staging) manages the order in which data arrives to ensure a deterministic process.
 The key requirements for the PSA template are to:
 Load multiple changes in a single transaction
 Store changes of record states over time
@@ -63,7 +60,7 @@ The above three components together satisfy the PSA template requirements. The d
 ## Implementation guidelines
 
 Use a single data logistics process, module or mapping to load data from a single source system table in the corresponding Persistent Staging Area table.
-The Load Date / Time stamp is the logical effective date, and is copied from the Landing Area table. The Landing Area handles the correct definition of the time a change has occurred.
+The inscription timestamp is the logical effective date, and is copied from the Landing Area table. The Landing Area handles the correct definition of the time a change has occurred.
 Because of the differences between source interfaces, relying on the CDC Operation (i.e. Insert, Update or Delete) to detect change is not always possible. For this reason all Persistent Staging Area data logistics processes need to contain a key lookup to compare values (detect changes).
 
 The structure of the PSA is the same as the Landing Area (including the metadata attributes). The following attributes are mandatory for the PSA tables:
@@ -71,8 +68,8 @@ The structure of the PSA is the same as the Landing Area (including the metadata
 |**Column Name**|**Required / Optional**|**Data Type / constraint**|**Reasoning**|**DIRECT equivalent**|
 |-|--|-|-|-|
 | Primary hash key i.e. <entity>_SK | Optional                | Character(32), when using   MD5 – not null            | The hashed value of the source (natural) key. Part of the primary key which is issued for each record in the history table. Can be used instead of composite primary key. | N/A                        |
-| Effective timestamp               | Required                | High precision timestamp   – not null                 | The timestamp that the record has been presented to the Data Warehouse environment. If a Landing Area is used these values will be inherited. | Insert Datetime            |
-| Event timestamp                   | Required                | High precision timestamp   – not null                 | The timestamp the change occurred in the source system. If a Landing Area is used these values will be   inherited. | Event Datetime             |
+| Inscription timestamp             | Required                | High precision timestamp   – not null                 | The timestamp that the record was first inscribed into the data solution. If a Landing Area is used these values will be inherited. | Inscription Datetime       |
+| Source timestamp                  | Required                | High precision timestamp   – not null                 | The timestamp the change occurred in the source system. If a Landing Area is used these values will be inherited. | Source Datetime            |
 | Source System ID / Code           | Required                | Varchar(100) – not null                               | The code or ID for the source system that supplied the data. | Record Source              |
 | Source Row ID                     | Required                | Integer – not null                                    | Audit attribute that captures the row order within the data delta as provided by a unique data logistics execution. The combination of the unique execution instance and the row ID will always relate back to a single record. Also used to distinguish order if the effective timestamp itself is not unique for a given key (due to fast-changing data). If a Landing Area is used these values will be inherited. | Source Row ID              |
 | CDC Operation                     | Required                | Varchar(100) – not null                               | Information derived or received by the data logistics process to derive logical deletes. If a Landing Area is used these values will be inherited. | CDC Operation              |
@@ -98,7 +95,7 @@ Loading processes towards the Integration Area can either be sourced from the La
 
 The Persistent Staging Area can be loaded in parallel with the Integration Area, or between the Landing Area and Integration Area.
 
-The 'prevent reprocessing' functionality can also be implemented using the Event Date / Time attribute instead of the Load Date / Time attribute. 
+The 'prevent reprocessing' functionality can also be implemented using the source timestamp attribute instead of the inscription timestamp attribute. 
 
 ## Related patterns
 

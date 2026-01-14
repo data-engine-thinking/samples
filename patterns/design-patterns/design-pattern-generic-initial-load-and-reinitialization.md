@@ -29,7 +29,7 @@ Figure 2: Re-initialization
 A true Initial Load occurs only once to populate at least the Persistent Staging Area. To perform an Initial Load the Replicated Source or Full Source table (copy) is used to source the data. If replication is used, the replication agents must be stopped for this process.
 For Re-initialization a single procedure or data logistics process should be created to copy the initial load dataset from the Persistent Staging Area into the Landing Area.
 At least the transactional tables must be truncated prior to a full Re-initialization to avoid creating duplicates.
-For the initial load of non-CDC sources a proxy Load Date / Time Stamp must be defined.
+For the initial load of non-CDC sources a proxy inscription timestamp must be defined.
 
 ## Considerations and consequences
 Running Re-initializations essentially discards and re-issues any Data Warehouse keys, which means that all related Cleansing Area and Presentation Layer datasets must be recalculated as well.

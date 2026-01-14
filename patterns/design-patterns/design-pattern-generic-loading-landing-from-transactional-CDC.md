@@ -73,7 +73,7 @@ Implementation guidelines
 Use built-in functionality to access CDC table data.
 Create a reusable procedure to calculate the Net Change per time interval based on an data logistics process control parameter (stored in the PARAMETER table).
 An alternative to the above mentioned reusable procedure is to run the Landing Area mapping multiple times (one for each time interval to catch-up).
-In a CDC environment, the Landing Area delta selection process can only select a dataset up to the maximum previous timestamp value of the defined interval. For example if the interval is set to day, only CDC records up to the end of the previous day can be selected. Omitting this results in additional CDC information being selected (or truncated) and linked incorrectly to the Load Date / Time stamp (which relates to the effective and expiry dates).
+In a CDC environment, the Landing Area delta selection process can only select a dataset up to the maximum previous timestamp value of the defined interval. For example if the interval is set to day, only CDC records up to the end of the previous day can be selected. Omitting this results in additional CDC information being selected (or truncated) and linked incorrectly to the inscription timestamp (which relates to the effective and expiry dates).
 
 ## Implementation guidelines
 

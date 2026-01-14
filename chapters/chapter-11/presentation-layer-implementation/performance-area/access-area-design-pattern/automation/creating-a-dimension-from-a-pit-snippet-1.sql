@@ -37,7 +37,7 @@ SELECT
   [sat2].[Customer_Contact_Preferences] AS [Contact_Preference]
 FROM PIT_Sales
 
-— Join Satellite1: Customer Details Sales
+-- Join Satellite1: Customer Details Sales
 LEFT JOIN [Sat_Customer_Details_Sales] sat1
 	ON PIT_Sales.Sat_Customer_Details_Sales_Customer_Surrogate_Key = sat1.Customer_Surrogate_Key
    AND PIT_Sales.Sat_Customer_Details_Sales_Inscription_Timestamp = sat1.Inscription_Timestamp

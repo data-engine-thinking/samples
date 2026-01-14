@@ -3,4 +3,4 @@
 > [!NOTE]
 > SQL samples are provided as-is. See [Disclaimer](xref:disclaimer).
 
-[!code-sql[](timelne-based-pit.sql)]
+[!code-sql[](timeline-based-pit.sql)]

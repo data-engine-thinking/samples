@@ -1,3 +1,14 @@
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - LDA solution pattern example for loading EntityClass.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
 
 SELECT 'INSERT INTO LDA.EntityClass (SourceTimestamp,ChangeDataIndicator,AuditTrailID,ModelCode,EntityClassCode,EntityClassName)
 VALUES (SYSUTCDATETIME(), ''C'', -56, ''' + ModelCode + ''',''' + EntityClassCode + ''',''' + EntityClassName + ''')'
@@ -106,3 +117,5 @@ VALUES (SYSUTCDATETIME(), 'C', -358, 'CoreLayerforShortcutObjects','SatShortyMai
 SELECT *
 FROM LDA.EntityClass;
 --------------------------------------------------------------------------------
+
+

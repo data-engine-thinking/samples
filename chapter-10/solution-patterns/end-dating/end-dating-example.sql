@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - End-dating example for time-variant records.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
+
 UPDATE Main
 SET 
   [Before_Timestamp] = COALESCE([Lead_From_Timestamp],'9999-12-31')
@@ -34,3 +46,5 @@ JOIN
     ON <Key> = Sub_<Key> 
     AND Main.[From_Timestamp] = Final.[From_Timestamp]
 WHERE RN! = 1
+
+

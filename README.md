@@ -43,3 +43,13 @@ Dirk is an experienced independent consultant and managing director of TEDAMOH â
 
 With a 25-year career centered on data modeling, temporal data, and automation, Dirk has consistently applied these disciplines to create flexible, lean, and extendable architectures.
 As a pioneer for Data Vault and FCO-IM in Germany Dirk has written various publications, and is a highly acclaimed international speaker at conferences.
+
+## Running the documentation
+
+This repository is intended to be cloned and modified for organization-specific scenarios. All files are text-based (MarkDown format, by default) for convenient editing and collaboration using Git. A DocFX file is also provided to generate static HTML from the repository's contents.
+
+To generate the content as a website (on localhost port 8081), please run the following from the 'docs' directory of the repository:
+
+```azurepowershell
+docfx docfx.json --serve -p 8081
+```

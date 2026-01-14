@@ -1,6 +1,15 @@
-# Combining multiple time-variant objects
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - SQL example for Combining multiple time-variant objects.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
 
-```sql
 -- Creation of a zero key for the date range
 SELECT Hub.<Key>, CONVERT(DATETIME2(7), '1900-01-01') AS FROM_TIMESTAMP FROM <Hub> Hub
 UNION
@@ -49,4 +58,3 @@ LEFT OUTER JOIN <Satellite 2> Sat1
    ON TimePeriods.CUSTOMER_SK = Sat2.[CUSTOMER_SK]
   AND Sat2.<From Timestamp> <= TimePeriods.FROM_TIMESTAMP
   AND Sat2.<Before Timestamp> > TimePeriods.BEFORE_TIMESTAMP
-```

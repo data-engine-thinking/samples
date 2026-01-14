@@ -1,8 +1,15 @@
-# Frequency Compacting
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - SQL example for Frequency Compacting.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
 
-The following example provides runnable code to showcase the frequency compacting concept as documented in Data Engine Thinking.
-
-```sql
 -- DDL for table creation
 DROP TABLE IF EXISTS FastChangeCoData;
 
@@ -61,4 +68,3 @@ FROM
 ) sub
   -- Add the filter to apply compacting
 WHERE [From_Timestamp] = [Time_Compacter]
-```

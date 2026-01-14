@@ -1,6 +1,15 @@
-# Fidelity
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - SQL example for Fidelity.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
 
-```sql
 WITH [Sample] AS
 (
   SELECT '100\@|' AS SURROGATE_KEY,
@@ -90,4 +99,3 @@ SELECT
           ORDER BY FROM_TIMESTAMP ASC)
     AS BEFORE_TIMESTAMP
 FROM Compacting
-```

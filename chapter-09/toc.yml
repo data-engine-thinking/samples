@@ -1,0 +1,96 @@
+- name: Overview
+  href: chapter-09.md
+- name: Contextual data
+  items:
+  - name: Satellite design pattern
+    items:
+    - name: Modeling time in satellites
+      href: contextual-data/satellite-design-pattern/considerations/struggling-with-time/modeling-time-in-satellites/modeling-time-in-satellites.md
+      items:
+      - name: Unitemporal
+        href: contextual-data/satellite-design-pattern/considerations/struggling-with-time/modeling-time-in-satellites/unitemporal.md
+      - name: Nontemporal
+        href: contextual-data/satellite-design-pattern/considerations/struggling-with-time/modeling-time-in-satellites/nontemporal.md
+      - name: Bitemporal
+        href: contextual-data/satellite-design-pattern/considerations/struggling-with-time/modeling-time-in-satellites/bitemporal.md
+- name: Integration layer implementation
+  items:
+  - name: Contextual data
+    items:
+    - name: Satellite design pattern
+      href: integration-layer-implementation/contextual-data/satellite-design-pattern/satellite-design-pattern.md
+      items:
+      - name: Automation
+        items:
+        - name: Preparing the satellite
+          href: integration-layer-implementation/contextual-data/satellite-design-pattern/automation/preparing-the-satellite.md
+        - name: Loading an unitemporal satellite
+          href: integration-layer-implementation/contextual-data/satellite-design-pattern/automation/loading-an-unitemporal-satellite.md
+        - name: Loading a bitemporal satellite
+          href: integration-layer-implementation/contextual-data/satellite-design-pattern/automation/loading-a-bitemporal-satellite.md
+        - name: Solution pattern example
+          href: integration-layer-implementation/contextual-data/satellite-design-pattern/automation/solution-pattern-example.md
+      - name: Considerations
+        items:
+        - name: Struggling with time
+          items:
+          - name: End dating
+            items:
+            - name: Deriving end dating
+              href: integration-layer-implementation/contextual-data/satellite-design-pattern/considerations/struggling-with-time/end-dating/deriving-end-dating.md
+  - name: Natural business relationships
+    items:
+    - name: Link design pattern
+      href: integration-layer-implementation/natural-business-relationships/link-design-pattern.md
+      items:
+      - name: Automation
+        items:
+        - name: Link solution pattern example
+          href: integration-layer-implementation/natural-business-relationships/link-design-pattern/automation/link-solution-pattern-example.md
+  - name: The core business concept
+    items:
+    - name: Hub design pattern
+      href: integration-layer-implementation/the-core-business-concept/hub-design-pattern.md
+      items:
+      - name: Automation
+        items:
+        - name: Hub solution pattern example
+          href: integration-layer-implementation/the-core-business-concept/hub-design-pattern/automation/hub-solution-pattern-example.md
+  - name: Other integration layer considerations
+    items:
+    - name: Testing
+      href: integration-layer-implementation/other-integration-layer-considerations/testing/testing.md
+      items:
+      - name: Completeness in temporality
+        href: integration-layer-implementation/other-integration-layer-considerations/testing/completness.md
+      - name: Referential integrity
+        href: integration-layer-implementation/other-integration-layer-considerations/testing/referential-integrity.md
+      - name: Uniqueness
+        href: integration-layer-implementation/other-integration-layer-considerations/testing/uniqueness.md
+      - name: Notification
+        href: integration-layer-implementation/other-integration-layer-considerations/testing/notification.md
+- name: Staging layer implementation
+  items:
+  - name: Landing area
+    items:
+    - name: Landing area pattern
+      href: staging-layer-implementation/landing-area/landing-area-pattern.md
+      items:
+      - name: Automation
+        items:
+        - name: Solution metadata example
+          href: staging-layer-implementation/landing-area/landing-area-pattern/automation/solution-metadata-example.md
+  - name: Persistent staging area
+    items:
+    - name: Persistent staging area
+      href: staging-layer-implementation/persistent-staging-area/persistent-staging-area.md
+    - name: Persistent staging area pattern
+      items:
+      - name: Considerations
+        items:
+        - name: Schema drift
+          href: staging-layer-implementation/persistent-staging-area/persistent-staging-area-pattern/considerations/schema-drift.md
+      - name: Automation
+        items:
+        - name: Solution pattern example
+          href: staging-layer-implementation/persistent-staging-area/persistent-staging-area-pattern/automation/solution-pattern-example.md

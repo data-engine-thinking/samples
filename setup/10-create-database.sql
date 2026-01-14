@@ -2,15 +2,11 @@
  * Data Engine Thinking
  *******************************************************************************
  *
- * https://dataenginethinking.com/
- *
  * Purpose:
- *   - Creates and/or resets the database for Data Engine Thinking samples
- *   - Creates a sample user
+ *   - Create or reset the sample database, set collation and recovery, and create PSA/LDA schemas and a sample user.
  *
- * This code is provided as is, without warranty of any kind. 
- * Use it at your own risk. We make no guarantees about its suitability, reliability, or accuracy.
- * We are not responsible for any damages or issues that may arise from using, modifying, or distributing this code.
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
  *
  ******************************************************************************/
 
@@ -59,3 +55,4 @@ GRANT CONTROL ON DATABASE::' + @database + ' TO [' + @user + '];
 
 PRINT @SQL;
 EXEC(@SQL);
+

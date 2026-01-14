@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - Simplified orchestration example for joining objects in the PSA.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
+
 /* Drop the table, if it exists */
 IF OBJECT_ID('tempdb..#Customer') IS NOT NULL DROP TABLE #Customer
 
@@ -222,3 +234,5 @@ ON cat.CategoryID = cust.CategoryID
 AND cat.EffectiveDate >= cust.START_DATE_KEY AND cat.EffectiveDate < cust.END_DATE_KEY  
 ) final
 ORDER BY 1
+
+

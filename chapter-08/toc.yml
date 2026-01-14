@@ -1,0 +1,23 @@
+- name: Overview
+  href: chapter-08.md
+- name: Automating delivery
+  items:
+  - name: A schema for data solution automation
+    items:
+    - name: Schema definition
+      href: automating-delivery/a-schema-for-data-solution-automation/schema-definition/schema-definition.md
+  - name: Compilation and code generation
+    items:
+    - name: Ways of code generation
+      items:
+      - name: Alternatives to templating engines
+        href: "automating-delivery/compilation-and-code generation/ways-of-code-generation/alternatives-to-templating-engines/alternatives-to-templating-engines.md"
+      - name: Domain-specific languages
+        href: "automating-delivery/compilation-and-code generation/ways-of-code-generation/domain-specific-languages/domain-specific-languages.md"
+      - name: Templating engines
+        href: "automating-delivery/compilation-and-code generation/ways-of-code-generation/templating-engines/templating-engines.md"
+        items:
+        - name: Template samples
+          items:
+          - name: Running a sample template
+            href: "automating-delivery/compilation-and-code generation/ways-of-code-generation/templating-engines/template-samples/running-a-sample-template.md"

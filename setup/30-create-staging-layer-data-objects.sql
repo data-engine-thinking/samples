@@ -2,14 +2,11 @@
  * Data Engine Thinking
  *******************************************************************************
  *
- * https://dataenginethinking.com/
- *
  * Purpose:
- *   - Create sample data objects for the data solution - staging layer
+ *   - Create sample staging layer data objects (LDA and PSA) used by the examples.
  *
- * This code is provided as is, without warranty of any kind. 
- * Use it at your own risk. We make no guarantees about its suitability, reliability, or accuracy.
- * We are not responsible for any damages or issues that may arise from using, modifying, or distributing this code.
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
  *
  ******************************************************************************/
 
@@ -183,3 +180,5 @@ CREATE TABLE [PSA].[Customer]
 
 ALTER TABLE [PSA].[Customer]
    ADD CONSTRAINT PK_PSA_Customer PRIMARY KEY CLUSTERED (CustomerID,[Inscription Timestamp],[Inscription Record Id]);
+
+

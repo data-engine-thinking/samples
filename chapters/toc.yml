@@ -1,0 +1,12 @@
+- name: Overview
+  href: index.md
+- name: Chapter 6 - Data Solution Architecture
+  href: ../chapter-06/chapter-06.md
+- name: Chapter 8 - Metadata, Automation, Code Generation
+  href: ../chapter-08/chapter-08.md
+- name: Chapter 9 - Getting The Data In
+  href: ../chapter-09/chapter-09.md
+- name: Chapter 10 - FastChangeCo Getting The Data In
+  href: ../chapter-10/chapter-10.md
+- name: Chapter 11 - Getting The Data Out
+  href: ../chapter-11/chapter-11.md

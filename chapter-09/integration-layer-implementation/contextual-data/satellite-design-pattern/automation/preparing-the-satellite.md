@@ -1,18 +1,6 @@
 # Preparing the Satellite
 
-```sql
-SELECT
-    <compacting selection>
-FROM
-(
-    SELECT
-        <compacting preparation>
-    FROM
-    (
-        SELECT
-            <inner selection>
-        FROM
-    ) compacting_preparation
-) compacting_selection
-WHERE <compacting filter>
-```
+> [!NOTE]
+> SQL samples are provided as-is. See [Disclaimer](xref:disclaimer).
+
+[!code-sql[](preparing-the-satellite-snippet-1.sql)]

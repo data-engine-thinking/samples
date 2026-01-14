@@ -2,18 +2,15 @@
  * Data Engine Thinking
  *******************************************************************************
  *
- * https://dataenginethinking.com/
- *
  * Purpose:
- *   - Create sample data objects for the data solution - integration layer
+ *   - Create sample integration layer data objects (Hub and Satellites).
  *
- * This code is provided as is, without warranty of any kind. 
- * Use it at your own risk. We make no guarantees about its suitability, reliability, or accuracy.
- * We are not responsible for any damages or issues that may arise from using, modifying, or distributing this code.
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
  *
  ******************************************************************************/
- 
- -- Drop objects
+
+-- Drop objects
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Hub_Customer]') AND type in (N'U'))
 DROP TABLE [dbo].[Hub_Customer]
 
@@ -86,3 +83,4 @@ INSERT INTO [dbo].[Hub_Customer]
 			(SELECT HASHBYTES('SHA1', 'Dirk')),	1,	'Dirk'
 		   )
 ;
+

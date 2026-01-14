@@ -1,8 +1,15 @@
-# Continuous Gap Compacting
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - SQL example for Continuous Gap Compacting.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
 
-The following example provides runnable code to showcase the contiuous gap compacting concept as documented in Data Engine Thinking.
-
-```sql
 -- DDL for table creation
 DROP TABLE IF EXISTS FastChangeCoData;
 
@@ -79,4 +86,3 @@ SELECT [Surrogate_Key],
        )
 FROM FastChangeCoData
 */
-```

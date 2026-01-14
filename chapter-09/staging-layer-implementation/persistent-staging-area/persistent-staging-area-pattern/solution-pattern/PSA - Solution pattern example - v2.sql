@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - PSA solution pattern example (version 2) for the persistent staging area pattern.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
+
 --------------------------------------------------------------------------------
 -- PSA solution pattern
 --INSERT INTO PSA.EntityClass (
@@ -107,3 +119,5 @@ ORDER BY ModelCode,EntityClassCode, InscriptionTimestamp, InscriptionRecordID
 -- 2) maxInscriptionTimestamp and maxInscriptionRecordID do not corelate since a lower InscriptionTimestamp contains maxInscriptionRecordID
 -- 3) rownum - if InscriptionRecordID not sorted in table
 -- 4) reinsert deleted record
+
+

@@ -1,6 +1,15 @@
-# Granularity and redundancy
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - SQL example for Granularity and redundancy.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
 
-```sql
 WITH [Sample] AS
 (
   SELECT '100\@|' AS SURROGATE_KEY,
@@ -42,4 +51,3 @@ FROM [Sample]
 JOIN [Dates]
   ON [Snapshot Timestamp] >= FROM_TIMESTAMP
  AND [Snapshot Timestamp] <  BEFORE_TIMESTAMP
-```

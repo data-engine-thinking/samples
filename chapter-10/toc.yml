@@ -1,0 +1,12 @@
+- name: Overview
+  href: chapter-10.md
+- name: Design patterns
+  items:
+  - name: Staging layer - Landing area
+    href: design-patterns/design-pattern-staging-layer-landing-area.md
+  - name: Staging layer - Persistent staging area
+    href: design-patterns/design-pattern-staging-layer-persistent-staging-area.md
+- name: Solution patterns
+  items:
+  - name: PSA - Solution pattern example
+    href: "solution-patterns/PSA/PSA - Solution pattern example.md"

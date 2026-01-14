@@ -2,14 +2,11 @@
  * Data Engine Thinking
  *******************************************************************************
  *
- * https://dataenginethinking.com/
- *
  * Purpose:
- *   - Create sample data objects for the data solution - presentation layer
+ *   - Create sample presentation layer data objects (PIT and related objects).
  *
- * This code is provided as is, without warranty of any kind. 
- * Use it at your own risk. We make no guarantees about its suitability, reliability, or accuracy.
- * We are not responsible for any damages or issues that may arise from using, modifying, or distributing this code.
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
  *
  ******************************************************************************/
 
@@ -70,3 +67,4 @@ LEFT JOIN [Sat_Customer_Details_Contact] sat2
 	ON PIT_Sales.Sat_Customer_Details_Contact_Customer_Surrogate_Key = sat1.Customer_Surrogate_Key
    AND PIT_Sales.Sat_Customer_Details_Contact_Inscription_Timestamp = sat1.Inscription_Timestamp
    AND PIT_SALES.Sat_Customer_Details_Contact_Inscription_Record_Id = sat1.Inscription_Record_Id
+

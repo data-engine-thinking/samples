@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 # Apple MacOS
 .DS_Store
+
+# DocFX build output
+_site/

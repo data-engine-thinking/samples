@@ -1,6 +1,15 @@
-# Joining two time-variant objects
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - SQL example for Joining two time-variant objects.
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
 
-```sql
 WITH Sat1 AS (SELECT 'Lo Stagnone\@|' AS SK
 ,'2025-04-11' AS InscriptionTimsetamp
 ,'2025-04-10' AS StateFromTimestamp
@@ -74,4 +83,3 @@ WHERE
    THEN Sat1.StateBeforeTimestamp
    ELSE Sat2.StateBeforeTimestamp
   END) -- Smallest of the two before timestamps
-```

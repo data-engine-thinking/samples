@@ -1,0 +1,14 @@
+- name: Instructions
+  href: instructions.md
+- name: Setup scripts
+  items:
+  - name: 10 Create Database
+    href: 10-create-database.md
+  - name: 20 Create Source Data Objects
+    href: 20-create-source-data-objects.md
+  - name: 30 Create Staging Layer Data Objects
+    href: 30-create-staging-layer-data-objects.md
+  - name: 40 Create Integration Layer Data Objects
+    href: 40-create-integration-layer-data-objects.md
+  - name: 50 Create Presentation Layer Data Objects
+    href: 50-create-presentation-layer-data-objects.md

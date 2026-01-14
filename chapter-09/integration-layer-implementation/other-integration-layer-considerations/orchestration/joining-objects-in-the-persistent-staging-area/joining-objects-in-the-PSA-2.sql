@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Data Engine Thinking
+ *******************************************************************************
+ *
+ * Purpose:
+ *   - Orchestration example for joining objects in the PSA (variant 2).
+ *
+ * Disclaimer:
+ *   - See disclaimer.md in the repository root.
+ *
+ ******************************************************************************/
+
 /* Drop the table, if it exists */
 IF OBJECT_ID('tempdb..#Customer') IS NOT NULL DROP TABLE #Customer
 
@@ -311,3 +323,5 @@ FROM
 	) comparison
 ) final
 WHERE ATTRIBUTE_CHECKSUM <> PREVIOUS_ATTRIBUTE_CHECKSUM
+
+

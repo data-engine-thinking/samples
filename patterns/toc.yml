@@ -1,0 +1,8 @@
+- name: Overview
+  href: index.md
+- name: Pattern Structure
+  href: pattern-structure.md
+- name: Design Patterns
+  href: design-patterns/index.md
+- name: Solution Patterns
+  href: solution-patterns/index.md

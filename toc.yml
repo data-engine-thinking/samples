@@ -1,18 +1,16 @@
 - name: Home
   href: index.md
-- name: Pattern Structure
-  href: pattern-structure.md
-- name: Design Patterns
-  href: design-patterns/index.md
-- name: Solution Patterns
-  href: solution-patterns/index.md
+- name: About
+  href: README.md
+- name: Patterns
+  href: patterns/index.md
 - name: Sample Setup
-  href: setup/toc.yml
-  topicHref: setup/instructions.md
+  href: setup/instructions.md
 - name: Samples By Chapter
-  href: chapters/toc.yml
-  topicHref: chapters/index.md
+  href: chapters/index.md
 - name: Taking The Next Step
   href: Taking-the-next-step.md
+- name: License
+  href: LICENSE.md
 - name: Disclaimer
   href: disclaimer.md

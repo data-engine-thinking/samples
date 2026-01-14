@@ -24,7 +24,7 @@
       "_appTitle": "Data Engine Thinking",
       "_enableSearch": false,
       "_disableTocFilter": true,
-      "_disableBreadcrumb": true,
+      "_disableBreadcrumb": false,
       "_appFooter": "<span>Data Engine Thinking</span>",
       "_disableContribution": true
     },

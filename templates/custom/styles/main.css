@@ -30,17 +30,51 @@
   margin-left: 0;
 }
 
-/* Side navigation: slimmer and less bulky */
-.sidetoc,
-.sidefilter {
-  font-size: 12px;
+/* ==========================================================================
+   Side Navigation / TreeView
+   ========================================================================== */
+
+/* Base sidebar styling */
+.sidetoc {
+  background: #fafafa;
+  border-right: 1px solid #e8e8e8;
 }
 
+.sidefilter {
+  background: #fafafa;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 10px 12px;
+}
+
+/* TOC container */
+.sidetoc .toc {
+  padding: 8px 0;
+}
+
+/* Base link styling */
 .sidetoc .toc a,
 .sidefilter .filter a {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  color: #3a3a3a;
+  color: #374151;
+  text-decoration: none;
+  padding: 6px 12px;
+  display: block;
+  border-radius: 4px;
+  margin: 1px 8px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.sidetoc .toc a:hover {
+  background: #e5e7eb;
+  color: #111827;
+  text-decoration: none;
+}
+
+.sidetoc .toc a.active {
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 500;
 }
 
 /* Override default bold labels in the TOC */
@@ -49,35 +83,64 @@
   font-weight: 400;
 }
 
-/* Align TOC expand icons with link text */
-.sidetoc .toc .nav > li {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+/* List reset */
+.sidetoc .toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.sidetoc .toc .nav > li > .expand-stub {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  margin-right: 4px;
-  line-height: 1;
+/* Base list item styling */
+.sidetoc .toc li {
+  position: relative;
 }
 
-.sidetoc .toc .nav > li > a {
-  flex: 1 1 auto;
+/* Hide expand/collapse chevrons */
+.sidetoc .toc .expand-stub {
+  display: none;
 }
 
-/* Subtle bullet markers for nested TOC items */
-.sidetoc .toc .nav > li > ul > li > a::before {
-  content: "•";
-  display: inline-block;
-  margin-right: 6px;
-  color: #9aa0a6;
-  font-size: 10px;
-  line-height: 1;
+/* ==========================================================================
+   Flat Navigation (Link-Based Structure)
+   ========================================================================== */
+
+/* All TOC items */
+.sidetoc .toc > ul > li > a {
+  padding-left: 16px;
+  font-weight: 500;
+  color: #1f2937;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   Breadcrumbs
+   ========================================================================== */
+
+.breadcrumb {
+  background: transparent;
+  padding: 8px 0 16px 0;
+  margin: 0;
+  font-size: 12px;
+}
+
+.breadcrumb li {
+  color: #6b7280;
+}
+
+.breadcrumb li a {
+  color: #4b5563;
+  text-decoration: none;
+}
+
+.breadcrumb li a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  padding: 0 6px;
+  color: #9ca3af;
 }
 
 /* Offset fixed header so the content isn't hidden under the banner */
@@ -91,8 +154,22 @@ body {
   }
 }
 
+/* ==========================================================================
+   Layout - Sidebar and Content Positioning
+   ========================================================================== */
+
 @media (min-width: 992px) {
-  .sidetoc,
+  .sidetoc {
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 100;
+  }
+
   .sidefilter {
     width: 240px;
   }
@@ -106,6 +183,11 @@ body {
 
   .body-content {
     margin-left: 260px;
+  }
+
+  /* Ensure article content doesn't overlap */
+  .article {
+    max-width: 900px;
   }
 }
 

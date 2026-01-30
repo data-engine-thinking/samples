@@ -20,8 +20,8 @@
   items:
   - name: Loading a Dimensional Model from the PSA
     href: design-pattern-dimensional-loading-from-the-persistent-staging-area.md
-  - name: Time Dimension
-    href: design-pattern-dimensional-time-dimension.md
+  - name: Date Dimension
+    href: design-pattern-dimensional-date-dimension.md
 
 - name: Generic
   items:

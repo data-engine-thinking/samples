@@ -6,7 +6,7 @@ Three primary approaches exist for modeling time in Satellites:
 
 - **Nontemporal**: No historical tracking, only current state is maintained: [example](nontemporal.md).
 - **Unitemporal**: Tracks history using inscription timestamps only: [example](unitemporal.md).
-- **Bitemporal**: Tracks both inscription timestamps and business effective dates: [example](bitemporal.md).
+- **Bitemporal**: Tracks both inscription and state timestamps: [example](bitemporal.md).
 
 The appropriate choice depends on business requirements, source system capabilities, and the need for temporal analysis and auditability.
 

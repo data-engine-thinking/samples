@@ -7,9 +7,9 @@ Key characteristics of unitemporal Satellites:
 - Uses inscription timestamp as the primary temporal marker
 - Tracks the history of how data changed from the data solution's perspective
 - Simpler to implement than bitemporal approaches
-- Suitable when business effective dates are not required or available
+- Suitable when business effective timestamps are not required or available
 - Enables point-in-time queries based on when data was loaded
 
-Unitemporal Satellites are the most common approach when source systems do not provide reliable business effective dates.
+Unitemporal Satellites are the most common approach when source systems do not provide reliable business effective timestamps.
 
 In unitemporal modeling, only the assertion timeline (inscription timestamp) is tracked. For more details on temporal concepts, see [Assertion and State Timelines](xref:design-pattern-generic-assertion-and-state-timelines).

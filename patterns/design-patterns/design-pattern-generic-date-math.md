@@ -9,36 +9,28 @@ This design pattern describes how to create a typical ‘Type 2 Dimension’ tab
 
 ## Motivation
 To move from a Data Vault (or other Hybrid) model to a Kimball-style Star Schema or similar requires various tables that store historical data to be joined to each other. This is a recurring step which, if done properly, makes it easy to change dimension structures without losing history. Merging various historic sets of data is seen as one of the more complex steps in a Data Vault (or similar) environment. The pattern is called ‘creating Dimensions from Hub’ tables because Hubs are the main entities which are linked together to form a Dimension using their historical information and relationships.
-Also known as
-Dimensions / Dimensional Modeling
-Gaps and islands
-Timelines
 
 ## Applicability
-This pattern is only applicable for loading processes from source systems or files to the Reporting Structure Area (of the Presentation Layer). The Helper Area may use similar concepts but since this is a ‘free-for-all’ part of the data logistics Framework it is not mandatory to follow this Design Pattern.
+This pattern is only applicable for data logistic processes from source systems or files to the Access Area of the Presentation Layer. The Performance Area may use similar concepts but since this is a ‘free-for-all’ part of the data logistics Framework it is not mandatory to follow this Design Pattern.
 
 ## Structure
-Creating Dimensions from a Data Vault model essentially means joining the various Hub, Link and Satellite tables together to create a certain hierarchy. In the example displayed in the following diagram the Dimension that can be generated is a ‘Product’ dimension with the Distribution Channel as a higher level in this dimension.
+Creating Dimensions from a Data Vault model essentially means joining the various Hub, Link and Satellite tables together to create a certain hierarchy.
 
- Business Insights > Design Pattern 019 - Creating Dimensions from Hub tables > BI7.png
-
-Figure 1: Example Data Vault model
-Creating dimensions by joining tables with history means that the overlap in timelines (effective and expiry dates) will be ‘cut’ in multiple records with smaller intervals. This is explained using the following sample datasets, only the tables which contain ‘history’ are shown.
+Creating dimensions by joining tables with history means that the overlap in timelines (assertion and state timelines) will be ‘cut’ in multiple records with smaller intervals. This is explained using the following sample datasets, only the tables which contain ‘history’ are shown.
 
 ```
 SAT Product
 
-Key|Product Name|Effective Date|Expiry Date	
---|---|---|---|---
-73|- (dummy)|01-01-1900|01-01-2009
-73|Cheese|01-01-2009|05-06-2010	
-73|Cheese – Yellow|05-06-2010|04-04-2011
-73|Cheese – Gold|04-04-2011|31-12-9999
+Key | Product Name    | State From Timestamp | State From Timestamp |
+----|-----------------|----------------------|----------------------|
+ 73 | NULL            | 01-01-1900           | 01-01-2009           |
+ 73 | Cheese          | 01-01-2009           | 05-06-2010           |
+ 73 | Cheese – Yellow | 05-06-2010           | 04-04-2011           |
+ 73 | Cheese – Gold   | 04-04-2011           | 31-12-9999           |
 
-The first record is a dummy record created together with the Hub record. This was updated as part of the history / SCD updates.
-Before being joined to the other sets this Satellite table is joined to the Hub table first. The Hub table maps the Data Warehouse key ‘73’ to the business key 'CHS'.
+Before being joined to the other sets this Satellite table is joined to the Hub table first. The Hub table maps the Data Salution key ‘73’ to the business key 'CHS'.
 
-SAT Product –Channel (Link-Satellite):
+SAT Product – Channel (Satellite):
 Link Key
 Product Key
 Channel Key

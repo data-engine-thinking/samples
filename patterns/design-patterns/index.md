@@ -16,7 +16,7 @@ Every Design Pattern follows the common layout described in [Pattern Structure](
 ## Dimensional Modelling
 
 - [Loading a Dimensional Model from the PSA](design-pattern-dimensional-loading-from-the-persistent-staging-area.md)
-- [Time Dimension](design-pattern-dimensional-time-dimension.md)
+- [Date Dimension](design-pattern-dimensional-date-dimension.md)
 
 ## Generic
 

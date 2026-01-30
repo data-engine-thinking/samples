@@ -1,16 +1,16 @@
 ---
-uid: design-pattern-dimensional-time-dimension
+uid: design-pattern-dimensional-date-dimension
 ---
 
-# Design Pattern - Dimensional Model - Time Dimension
+# Design Pattern - Dimensional Model - Date Dimension
 
 ## Purpose
 
-This Design Pattern describes the positioning, structure and purpose of Data Warehouse reference information, specifically the Time Dimension.
+This Design Pattern describes the positioning, structure and purpose of Data Solution reference information, specifically the Date Dimension.
 
 ## Motivation
 
-Data Warehouse solutions typically require a separate dataset to resolve common descriptions or codes (descriptive information). The reference data provides additional context for the information that is sourced from the various operational systems. Reference data is typically a description of a code where the code itself is provided by the system but the description is not provided directly.
+Data Solutions typically require a separate dataset to resolve common descriptions or codes (descriptive information). The reference data provides additional context for the information that is sourced from the various operational systems. Reference data is typically a description of a code where the code itself is provided by the system but the description is not provided directly.
 
 Also known as:
 
@@ -38,5 +38,3 @@ The key design decision is to define whether the reference data is tracked for c
 ## Related patterns
 
 * [Design Pattern 015 - Generic - Loading Landing Area tables](xref:design-pattern-staging-layer-landing-area).
-
-

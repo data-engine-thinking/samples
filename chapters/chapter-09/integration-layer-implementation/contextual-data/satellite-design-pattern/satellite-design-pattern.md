@@ -5,7 +5,7 @@ Satellites store the descriptive context and history for Hubs and Links. They ca
 Key characteristics of Satellites:
 
 - Contains descriptive attributes and temporal metadata
-- Tracks changes over time using inscription timestamps (unitemporal) or business effective dates (bitemporal)
+- Tracks changes over time using inscription timestamps (unitemporal) or state timestamps (bitemporal)
 - Supports record compacting to eliminate redundant data
 - Can be split by rate of change, source system, or attribute grouping
 

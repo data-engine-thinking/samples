@@ -43,7 +43,7 @@ DWH Key	| Logical Key | Name | Color | Start date | End date | Update date
 2 | CHS | Cheese | Yellow | 11-01-1996 | 04-01-2000 | 11-01-1996
 1 | CHS | Cheese | Yellow | 07-03-1994 | 10-01-1996 | 10-01-1996
 
-When at some point (at 24-06-2006) the name is changed to *Old Cheese* and the Name attribute is defined as type 1(A) the name is overwritten, resulting in the following: 
+When at some point (at 24-06-2006) the name is changed to *Old Cheese* and the Name attribute is defined as type 1(A) the name is overwritten, resulting in the following:
 
 DWH Key	| Logical Key | Name | Color | Start date | End date | Update date
 --- | --- | --- | --- | --- | --- | ---
@@ -86,13 +86,13 @@ DWH Key	| Logical Key | Name | Color | Start date | End date | Update date
 A new record is inserted in the Data Warehouse table on 12-10-2009:
 
 DWH Key	| Logical Key | Name | Previous Name | Color | Update date
---- | --- | --- | --- | --- | --- 
+--- | --- | --- | --- | --- | ---
 1 | CHS | Cheese | NULL | Golden | 12-10-2009
 
 When the name is changed to Old Cheese on February 2010 it leads to the following results:
 
 DWH Key	| Logical Key | Name | Previous Name | Color | Update date
---- | --- | --- | --- | --- | --- 
+--- | --- | --- | --- | --- | ---
 1 | CHS | Old Cheese | Cheese | Golden | 02-02-2010
 
 **Type 4**. This history tracking mechanism operates by using separate tables to store the history. One table contains the most recent version of the record and the history table contains some or all history.
@@ -136,6 +136,6 @@ Not applicable.
 
 * [Design Pattern - Generic - Managing temporality by using Load, Event and Change dates](xref:design-pattern-generic-managing-multi-temporality).
 * [Design Pattern - Data Vault - Simple Date Math](xref:design-pattern-generic-date-math).
-* [Design Pattern - Dimensional Model - Time Dimension](xref:design-pattern-dimensional-time-dimension).
+* [Design Pattern - Dimensional Model - Date Dimension](xref:design-pattern-dimensional-date-dimension).
 
 

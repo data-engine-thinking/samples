@@ -1,6 +1,6 @@
 # Bitemporal
 
-Bitemporal modeling tracks two independent timelines: the inscription timestamp (when data was recorded) and the business effective date (when the change actually occurred in the real world).
+Bitemporal modeling tracks two independent timelines: the inscription timestamp (when data was recorded) and the state timestamp (when the change actually occurred in the real world).
 
 Key characteristics of bitemporal Satellites:
 
@@ -12,4 +12,4 @@ Key characteristics of bitemporal Satellites:
 
 Bitemporal Satellites are essential when source systems provide reliable business effective dates and when business requirements demand the ability to query data as it was known at any point in time.
 
-Bitemporal modeling combines both the assertion timeline (inscription timestamp) and state timeline (source timestamp). For more details on these concepts, see [Assertion and State Timelines](xref:design-pattern-generic-assertion-and-state-timelines).
+Bitemporal modeling combines both the assertion timeline (inscription timestamp) and state timeline (source business timestamp). For more details on these concepts, see [Assertion and State Timelines](xref:design-pattern-generic-assertion-and-state-timelines).

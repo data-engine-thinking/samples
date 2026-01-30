@@ -38,14 +38,14 @@ The structure of the PSA tables is similar to the LND tables, with the exception
 * The Primary Key is a composite of:.
 * The source natural key.
 * The Inscription timestamp.
-* The Source Row ID.
+* The Inscription Record Id.
 * The attributes that are part of the key are not nullable (e.g. the source natural key columns).
 
 An optional Current Record Indicator may be added.
 
 Some attribute may be removed from PSA (non-standard).
 
-The reason the Primary Key is composite is to track the changes to records over time as per the inscription timestamp (the time recorded when the record is inscribed into the data solution). In principle, only having the natural key and inscription timestamp is sufficient. But in some scenarios the speed of records being presented to the data solution is so fast that the inscription timestamp may not be unique (due to accuracy limitations of the high precision timestamp data type), and due to this the Source Row ID is also added the key. This obviously relies on the interface (source to Staging) manages the order in which data arrives to ensure a deterministic process.
+The reason the Primary Key is composite is to track the changes to records over time as per the inscription timestamp (the time recorded when the record is inscribed into the data solution). In principle, only having the natural key and inscription timestamp is sufficient. But in some scenarios the speed of records being presented to the data solution is so fast that the inscription timestamp may not be unique (due to accuracy limitations of the high precision timestamp data type), and due to this the Inscription Record Id is also added the key. This obviously relies on the interface (source to Staging) manages the order in which data arrives to ensure a deterministic process.
 The key requirements for the PSA template are to:
 Load multiple changes in a single transaction
 Store changes of record states over time
@@ -71,7 +71,7 @@ The structure of the PSA is the same as the Landing Area (including the metadata
 | Inscription timestamp             | Required                | High precision timestamp   – not null                 | The timestamp that the record was first inscribed into the data solution. If a Landing Area is used these values will be inherited. | Inscription Datetime       |
 | Source timestamp                  | Required                | High precision timestamp   – not null                 | The timestamp the change occurred in the source system. If a Landing Area is used these values will be inherited. | Source Datetime            |
 | Source System ID / Code           | Required                | Varchar(100) – not null                               | The code or ID for the source system that supplied the data. | Record Source              |
-| Source Row ID                     | Required                | Integer – not null                                    | Audit attribute that captures the row order within the data delta as provided by a unique data logistics execution. The combination of the unique execution instance and the row ID will always relate back to a single record. Also used to distinguish order if the effective timestamp itself is not unique for a given key (due to fast-changing data). If a Landing Area is used these values will be inherited. | Source Row ID              |
+| Inscription Record Id                     | Required                | Integer – not null                                    | Audit attribute that captures the row order within the data delta as provided by a unique data logistics execution. The combination of the unique execution instance and the row ID will always relate back to a single record. Also used to distinguish order if the effective timestamp itself is not unique for a given key (due to fast-changing data). If a Landing Area is used these values will be inherited. | Inscription Record Id              |
 | CDC Operation                     | Required                | Varchar(100) – not null                               | Information derived or received by the data logistics process to derive logical deletes. If a Landing Area is used these values will be inherited. | CDC Operation              |
 | Full row hash                     | Optional                | Character(32), when using   MD5 – not null            | Using a checksum for record comparison requires storing a checksum value as an attribute. Can be made optional if column-by-column comparison is implemented instead. If a Landing Area is used these values will be inherited. | Hash Full Record           |
 | data logistics Process Execution ID          | Required                | Integer – not null                                    | Logging which unique data logistics process has inserted the record.    | Audit Trail Id  |

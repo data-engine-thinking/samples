@@ -55,7 +55,7 @@ The key points of interest are:
 ## Implementation guidelines
 
 * Use a single data logistics process, module or mapping to load data from a single source system table in the corresponding Landing table.
-* A control table, parameter or restartable sequence in a mapping can be used to generate the Source Row ID numbers.
+* A control table, parameter or restartable sequence in a mapping can be used to generate the Inscription Record Id numbers.
 * The data type conversion has many uses (as detailed in the Data Integration Framework Staging Layer document); most notably limiting the variety of data types in the Integration Layer and creating a buffer against changes in the source system.
 
 ### Landing Area table structure
@@ -69,7 +69,7 @@ The structure of the Landing Area therefore is the same as the source table, but
 | Inscription timestamp    | Required                | High precision timestamp   – not null                 | The timestamp that the record was first inscribed into the data solution. | Inscription Datetime      |
 | Source timestamp         | Required                | High precision timestamp   – not null                 | The timestamp the change occurred in the source system.      | Source Datetime           |
 | Source System ID / Code  | Required                | Varchar(100) – not null                               | The code or ID for the source system that supplied the data. | Record Source             |
-| Source Row ID            | Required                | Integer – not null                                    | Audit attribute that captures the row order within the data delta as provided by a unique data logistics execution. The combination of the unique execution instance and the row ID will always relate back to a single record. Also used to distinguish order if the effective timestamp itself is not unique for a given key (due to fast-changing data). | Source Row ID             |
+| Inscription Record Id            | Required                | Integer – not null                                    | Audit attribute that captures the row order within the data delta as provided by a unique data logistics execution. The combination of the unique execution instance and the row ID will always relate back to a single record. Also used to distinguish order if the effective timestamp itself is not unique for a given key (due to fast-changing data). | Inscription Record Id             |
 | CDC Operation            | Required                | Varchar(100) – not null                               | Information derived or received by the data logistics process to derive logical deletes. | CDC Operation             |
 | Full row hash            | Optional                | Character(32), when using   MD5 – not null            | Using a checksum for record comparison requires storing a checksum value as an attribute. Can be   made optional if column-by-column comparison is implemented instead. | Hash Full Record          |
 | data logistics Process Execution ID | Required                | Integer – not null                                    | Logging which unique data logistics process has inserted the record.    | Audit Trail Id |

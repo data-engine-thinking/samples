@@ -8,7 +8,7 @@ uid: design-pattern-generic-initial-load-and-reinitialization
 This design pattern describes the procedures for performing an Initial Load and any complete reloads (Re-initializations) after this.
 
 ## Motivation
-Every Data Warehouse will see Initial Load(s) and Re-initializations. If all goes well the Initial Load is a true initial load in the sense that it is done only once. Re-initializations are more common and typically caused by progressing insight in the data model design (reModeling requirements) or troubleshooting. The Persistent Staging Area plays a large part in this, by defining an archive where source information is maintained to enable repopulation of the Data Warehouse.
+Every data solution will see Initial Load(s) and Re-initializations. If all goes well the Initial Load is a true initial load in the sense that it is done only once. Re-initializations are more common and typically caused by progressing insight in the data model design (reModeling requirements) or troubleshooting. The Persistent Staging Area plays a large part in this, by defining an archive where source information is maintained to enable repopulation of the Data Warehouse.
 Also known as
 Full Load.
 Regeneration.

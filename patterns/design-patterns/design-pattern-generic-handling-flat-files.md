@@ -40,7 +40,7 @@ Messaging applications (brokers) typically contain built-in functionality for th
 * If applicable the data types of the flat file source definition are set to the same length as defined in the previous bullet.  This is done to reduce the impact of field changes.
 * A single Batch (workflow) may be created when a source systems delivers more than one file. This depends on the size of the files and the total processing time.
 * Modules are only actively failed when record counts from the control files do not match.
-* Every source file should contain the timestamp in the file name (YYYYMMDD_HHMM).
+* Every source file should contain the timestamp in the file name (YYYYMMDD_HHMM_SS).
 * File lists may be used to select which files to load and to handle the changing filenames (date!). This also provides the opportunity to process multiple files at once.
 * If files are delivered less frequently than the data logistics process runs, for instance files are delivered weekly but the data logistics process runs daily, a file list still needs to be created. This file list contains an empty dummy file so the process does not fail.
 
@@ -56,11 +56,8 @@ This can be achieved in a variety of ways, but must be consistent.
 Some examples are:
 
 * Using the created and/or modified timestamp from the file.
-* Using a derived generation date of the file relative to the sysdate day. This can be useful when processing daily batch data. In a daily interval, one (1) day can be subtracted from the generation date in order to process the correct date time of the event. The same process is applicable to any other used Batch interval. A file date that is the same as the sysdate means that the file itself was generated on the same day, usually just past midnight. If the generation date is the sysdate minus one date, then the generation date can be used as date time event.
+* Using a derived generation date of the file relative to the system timestamp. This can be useful when processing daily batch data. In a daily interval, one (1) day can be subtracted from the generation date in order to process the correct date time of the event. The same process is applicable to any other used Batch interval. A file date that is the same as the system timestamp means that the file itself was generated on the same day, usually just past midnight. If the generation date is the system timestamp minus one date, then the generation date can be used as date time event.
 
 ## Related patterns
 
-* [Design Pattern 015 - Generic - Loading Landing Area Tables](xref:design-pattern-staging-layer-landing-area).
-
-
-
+None.

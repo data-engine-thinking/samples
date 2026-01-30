@@ -69,4 +69,4 @@ Information about the state of CDC, or disabling the mechanism is available usin
 
 ## Related patterns
 
-* [Design Pattern - Generic - Interfacing from an operational system](xref:design-pattern-generic-interfacing-from-an-operational-system).
+None.

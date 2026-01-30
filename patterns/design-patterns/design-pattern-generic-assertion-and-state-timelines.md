@@ -99,6 +99,4 @@ For full temporal flexibility, track both timelines:
 
 ## Related Patterns
 
-- [Design Pattern - Generic - Managing Multi-Temporality](xref:design-pattern-generic-managing-multi-temporality).
 - [Design Pattern - Data Vault - Satellite](xref:design-pattern-data-vault-satellite).
-- [Design Pattern - Generic - Types of History](xref:design-pattern-generic-types-of-history).

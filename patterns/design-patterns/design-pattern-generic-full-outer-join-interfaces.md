@@ -22,11 +22,11 @@ This pattern is only applicable to designated Source-to-Staging (Staging Layer) 
 
 The process of the Full Outer Join mechanism to detect delta information is as follows:
 Load the Source table dataset (without filters).
-Load the Persistent Staging Area dataset, but only for the most recent version of each record / key. This is the record with the most recent INSERT_DATETIME (effective date). Additionally, only records which are not labeled as a logical delete (Change Data Indicator <> Delete) must be selected to avoid redundant processing as these records will not be available in the Source system anymore.
+Load the Persistent Staging Area dataset, but only for the most recent version of each record / key. This is the record with the most recent INSERT_DATETIME (effective date). Additionally, only records which are not labeled as a logical delete (CDC_OPERATION <> Delete) must be selected to avoid redundant processing as these records will not be available in the Source system anymore.
 Perform the Full Outer Join by joining the Source and History datasets on the table keys. For the Persistent Staging Area this not the Primary Key but the original Source system key, also identified as being part of the Unique Index on the History table.
 Interpret the join results, either by using a checksum function or attribute comparison.  The interpretation is as follows:
 FULL_ROW_CHECKSUM (if used): if the Source key is NULL then use the History Checksum going forward, otherwise use the Source Checksum.
-Change Data Indicator uses the following logic:
+CDC_OPERATION uses the following logic:
 If the History key is NULL then Insert.
 Otherwise if the Source key is null then Delete.
 Otherwise if the checksums and/or attributes are different then Update.

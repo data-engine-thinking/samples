@@ -20,14 +20,14 @@ Decoupling key distribution and managing historical information (changes over ti
 
 Also known as:
 
-* Core Business Concept (Ensemble Modeling).
-* Hub (Data Vault Modeling concept).
-* Surrogate Key (SK) or Hash Key (HSH) distribution, as commonly used implementations of the concept.
-* Data Warehouse key distribution.
+- Core Business Concept (Ensemble Modeling).
+- Hub (Data Vault Modeling concept).
+- Surrogate Key (SK) or Hash Key (HSH) distribution, as commonly used implementations of the concept.
+- Data Warehouse key distribution.
 
 ## Applicability
 
-This pattern is applicable for the process of loading from the Staging Layer into Hub tables. It is used in all Hubs in the Integration Layer. Derived (Interpretation Area) Hub data logistics processes follow the same pattern.
+This pattern is applicable for the process of loading from the Staging Layer into Hub tables. It is used in all Hubs in the Integration Layer. Derived (Business Data Vault) Hub data logistics processes follow the same pattern.
 
 ## Structure
 
@@ -43,7 +43,17 @@ Hubs must be immediately and uniquely identifiable through their name.
 
 Loading a Hub table from a specific Staging Layer table is a single, modular, data logistics process. This is a requirement for flexibility in loading information as it enables full parallel processing.
 
-Multiple passes of the same source table or file are usually required for various tasks. The first pass will insert new keys in the Hub table; the other passes may be needed to populate the Satellite and Link tables. The designated business key (sometimes the source natural key, but not always!) is the ONLY non-process or Data Warehouse related attribute in the Hub table.
+Multiple passes of the same source table or file are usually required for various tasks. The first pass will insert new keys in the Hub table; the other passes may be needed to populate the Satellite and Link tables.
+The designated business key (sometimes the source natural key, but not always!) is the ONLY non-process or Data Warehouse related attribute in the Hub table.
+
+The Inscription Timestamp is copied (inherited) from the Staging Layer. This improves data logistics flexibility. The Landing Area data logistics is designed to label every record which is processed by the same module with the correct timestamp, indicating when the record has been loaded into the Data Warehouse environment. The data logistics process control framework will track when records have been loaded physically through the Audit Trail Id.
+
+### Optional attributes
+
+The following attributes are commonly included in Hub tables but are technically optional:
+
+- **Record Source**: Can be derived from the Audit Trail Id via the control framework, which maintains the complete lineage of each record. Including Record Source as a separate column provides convenience for querying but introduces redundancy.
+- **Inscription Timestamp**: While recommended for auditability, this can also be derived from the control framework if the Audit Trail Id is present.
 
 The Audit Trail Id is the essential link to the control framework, from which all other process metadata can be obtained. Organizations may choose to denormalize Record Source and Inscription Timestamp for query convenience, but this is a design choice rather than a requirement.
 
@@ -54,15 +64,6 @@ By default the DISTINCT function is executed on database level to reserve resour
 The logic to create the initial (dummy) zero key record can both be implemented as part of the Hub data logistics process, as a separate data logistics process which queries all keys that have no corresponding dummy, or issued when the Hub table is created.
 
 When modeling the Hub tables try to be conservative when defining the business keys. Not every foreign key in the source indicates a business key and therefore a Hub table. A true business key is a concept that is known and used throughout the organization (and systems) and is self-standing and meaningful.
-
-### Optional attributes
-
-The following attributes are commonly included in Hub tables, but are technically optional:
-
-* **Record Source** - this can be derived from the Audit Trail Id via the control framework, which maintains the complete lineage of each record. Including Record Source as a separate column can provide convenience for querying but introduces redundancy.
-* **Inscription Timestamp** - while this can sometimes provide benefits to identify when a certain key was received even when when context is not yet available, designers must be aware, however, that this is still a technical value. When there is genuine interest in understanding the frequency in which business key are delivered across different systems, it is possible to solve this with a dedicated Satellite.
-
-When incorporating the Inscription Timestamp, its value is copied (inherited) from the Staging Layer. This improves data logistics flexibility. The Landing Area data logistics is designed to label every record which is processed by the same module with the correct timestamp, indicating when the record has been loaded into the Data Warehouse environment. The data logistics process control framework will track when records have been loaded physically through the Audit Trail Id.
 
 To cater for a situation where multiple inscription timestamp values exist for a single business key, the minimum inscription timestamp should be the value passed through with the Hub record. This can be implemented in data logistics logic, or passed through to the database. When implemented at a database level, instead of using a SELECT DISTINCT, using the MIN function with a GROUP BY the business key can achieve both a distinct selection and minimum inscription timestamp in one step.
 

@@ -20,10 +20,10 @@ Decoupling key distribution and managing historical information (changes over ti
 
 Also known as:
 
-- Core Business Concept (Ensemble Modeling).
-- Hub (Data Vault Modeling concept).
-- Surrogate Key (SK) or Hash Key (HSH) distribution, as commonly used implementations of the concept.
-- Data Warehouse key distribution.
+* Core Business Concept (Ensemble Modeling).
+* Hub (Data Vault Modeling concept).
+* Surrogate Key (SK) or Hash Key (HSH) distribution, as commonly used implementations of the concept.
+* Data Warehouse key distribution.
 
 ## Applicability
 

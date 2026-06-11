@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "C:\\Users\\me\\AppData\\Roaming\\fnm\\node-versions\\v24.8.0\\installation\\node.exe",
+      "runtimeArgs": ["node_modules/astro/bin/astro.mjs", "dev", "--port", "2331"],
+      "port": 2331
+    }
+  ]
+}

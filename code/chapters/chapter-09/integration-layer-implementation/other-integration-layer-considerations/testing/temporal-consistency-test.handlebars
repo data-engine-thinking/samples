@@ -1,0 +1,64 @@
+{{#each dataObjectMappings}}
+{{#if @first}}
+
+BEGIN
+  DECLARE @TestResult VARCHAR(10) = 'Fail';
+  DECLARE @TestOutput VARCHAR(MAX);
+  DECLARE @Issues INT = 0;
+  BEGIN TRY
+    WITH OrderedRanges AS
+    (
+      SELECT
+        {{#each businessKeyDefinitions}}{{surrogateKey}},{{/each}}
+        {{inscriptionTimeStampColumn}},
+        {{inscriptionTimeStampBeforeColumn}},
+        LAG({{inscriptionTimeStampBeforeColumn}}) OVER (
+          PARTITION BY {{#each businessKeyDefinitions}}{{surrogateKey}}{{/each}}
+          ORDER BY {{#each businessKeyDefinitions}}{{surrogateKey}}, {{/each}}
+          {{inscriptionTimeStampColumn}})
+          AS PREVIOUS_{{inscriptionTimeStampBeforeColumn}}
+      FROM [{{targetDataObject.name}}] sat
+    )
+    ,Evaluation AS
+    (
+      SELECT
+        {{#each businessKeyDefinitions}}{{surrogateKey}},{{/each}}
+        {{inscriptionTimeStampColumn}},
+        {{inscriptionTimeStampBeforeColumn}},
+        PREVIOUS_{{inscriptionTimeStampBeforeColumn}},
+        CASE
+          WHEN PREVIOUS_{{inscriptionTimeStampBeforeColumn}} IS NOT NULL
+            AND {{inscriptionTimeStampColumn}} >
+                   PREVIOUS_{{inscriptionTimeStampBeforeColumn}} THEN 'Gap'
+          WHEN PREVIOUS_{{inscriptionTimeStampBeforeColumn}} IS NOT NULL
+            AND {{inscriptionTimeStampColumn}} <
+                   PREVIOUS_{{inscriptionTimeStampBeforeColumn}} THEN 'Overlap'
+          ELSE 'No Issue'
+        END AS TEMPORAL_INCONSISTENCY_ISSUE
+      FROM OrderedRanges
+      WHERE
+        (PREVIOUS_{{inscriptionTimeStampBeforeColumn}} IS NOT NULL
+          AND {{inscriptionTimeStampColumn}} >
+                 PREVIOUS_{{inscriptionTimeStampBeforeColumn}} )
+        OR
+        (PREVIOUS_{{inscriptionTimeStampBeforeColumn}} IS NOT NULL
+          AND {{inscriptionTimeStampColumn}} <
+                 PREVIOUS_{{inscriptionTimeStampBeforeColumn}} )
+    )
+    SELECT @Issues = COUNT(*)
+    FROM Evaluation
+    SET @TestOutput = CONVERT(VARCHAR(10),@Issues)+' issue(s) were found.';
+    IF @Issues = 0
+      BEGIN
+        SET @TestResult = 'Pass'
+      END
+  END TRY
+  BEGIN CATCH
+    SET @TestOutput = ERROR_MESSAGE();
+    SET @TestResult = 'Fail'
+  END CATCH
+
+  SELECT @TestOutput AS [OUTPUT], @TestResult AS [RESULT];
+END
+{{/if}}
+{{/each}}

@@ -1,55 +1,79 @@
-# Data Engine Thinking Sample Code
+# Data Engine Thinking — Samples
 
-This repository complements [Data Engine Thinking](https://dataenginethinking.com/) by providing practical examples for implementing a flexible data solution. In the book, we often refer to our website -including this repository- to dive deeper into the technical aspects. This way, we aim to keep the book readable while still providing the level of technical detail we feel is necessary to developer data solutions the way we feel these should be implemented.
+Sample code, design patterns, and solution patterns that accompany the book
+[*Data Engine Thinking*](https://dataenginethinking.com/) by Roelant Vos and Dirk Lerner.
 
-Get your copy of Data Engine Thinking today!
+This repository builds the companion documentation site at
+**[docs.dataenginethinking.com](https://docs.dataenginethinking.com)**.
 
-* Softcover: [US](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=27&userid=122&mailid=42) | [UK](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=28&userid=122&mailid=42) | [DE](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=29&userid=122&mailid=42) | [FR](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=30&userid=122&mailid=42) | [ES](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=31&userid=122&mailid=42) | [IT](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=32&userid=122&mailid=42) | [NL](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=33&userid=122&mailid=42) | [PL](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=34&userid=122&mailid=42) | [SE](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=35&userid=122&mailid=42) | [JP](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=36&userid=122&mailid=42) | [CA](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=37&userid=122&mailid=42) | [AU](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=38&userid=122&mailid=42)
-*	eBook: [US](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=41&userid=122&mailid=42) | [UK](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=42&userid=122&mailid=42)] | [DE](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=43&userid=122&mailid=42) | [FR](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=44&userid=122&mailid=42) | [ES](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=45&userid=122&mailid=42) | [IT](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=46&userid=122&mailid=42)| [NL](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=47&userid=122&mailid=42) | [JP](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=48&userid=122&mailid=42) | [BR](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=49&userid=122&mailid=42) | [CA](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=50&userid=122&mailid=42) | [MX](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=51&userid=122&mailid=42) | [AU](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=52&userid=122&mailid=42) | [IN](https://dataenginethinking.com/index.php?option=com_acym&ctrl=fronturl&task=click&urlid=53&userid=122&mailid=42)
+## Stack
 
-For more information go to https://dtng.link/order.
+- [Astro](https://astro.build) with [Starlight](https://starlight.astro.build)
+- Content authored as Markdown/MDX under `src/content/docs/`
+- In-site search via Pagefind (built automatically on `build`)
 
-## About Data Engine Thinking
+## Run it locally
 
-Data is evidence of past activity — frozen moments in time, waiting to be uncovered and analyzed. But without understanding the context in which data is created, it remains just ‘stuff.’ Building this understanding takes time. To turn raw data into meaningful information, we must continuously refine our interpretations — and adapt our data solutions accordingly. Flexibility is key. 
+This is a standard [Astro](https://astro.build) project, so running it after a
+clone is just a few commands.
 
-A truly effective data solution must evolve alongside our understanding, supported by a structured approach, automation, and code generation.
+### Prerequisites
 
-Data Engine Thinking presents an end-to-end methodology for designing and delivering data solutions that can evolve. This book guides you on a journey with *FastChangeCo*, a fictitious company struggling to keep up with today’s business demands. Faced with an increasingly complex and fast-changing system landscape, they embark on a mission to develop a future-proof data solution — one that accelerates the implementation of new requirements and overcomes integration challenges.
-Supported by detailed conceptual and practical explanations, we follow FastChangeCo as they transform their fragmented, inflexible data platforms into a solution that fully meets the business’ needs.
+- **Node.js ≥ 20.3**  A version manager such as [fnm](https://github.com/Schniz/fnm) or [nvm](https://github.com/nvm-sh/nvm) is the easiest way to get a matching version.
+- **pnpm** — the package manager is pinned in `package.json`, so the simplest
+  setup is to let [Corepack](https://nodejs.org/api/corepack.html) provide it:
 
-Along the way, you’ll learn how to:
-* Define a clear vision and strategy for data
-* Select the right frameworks for a scalable architecture
-* Overcome integration challenges
-* Tackle the complexities of ‘time’ in data
-* Deliver an architecture that is designed for change
-* Implement code generation and automation
-* Solve real-world problems when working with data
+  ```sh
+  corepack enable
+  ```
 
-Whether you're a data architect or modeler, engineer, or business leader, Data Engine Thinking will provide the principles, patterns, and practical techniques to create a data solution that adapts — just like your organization does.
+### Run
 
-## The Authors
-
-### Roelant Vos
-
-Roelant is a globally recognized data expert, speaker, and writer with over 25 years of experience in data management. As a consultant, trainer, developer, software vendor, and corporate decision-maker, he has experienced data management from many angles. His passion for automation and model-driven engineering has been a constant throughout his career.
-
-After beginning his career developing BI solutions, he quickly became fascinated by pushing the boundaries of automation, especially in the data integration space. Having led large-scale data projects worldwide, he remains a firm believer that harnessing patterns, automation, and code generation is the key to making data solutions more efficient, manageable, and, most importantly, adaptable.
-
-### Dirk Lerner
-
-Dirk is an experienced independent consultant and managing director of TEDAMOH — the Data Modeling Hub. He is considered a global expert on BI & data architectures, modeling, and is highly regarded for his work on temporal data — including groundbreaking examples on his blog and in his trainings that highlight the many aspects of managing time in data, and how to solve them.
-
-With a 25-year career centered on data modeling, temporal data, and automation, Dirk has consistently applied these disciplines to create flexible, lean, and extendable architectures.
-As a pioneer for Data Vault and FCO-IM in Germany Dirk has written various publications, and is a highly acclaimed international speaker at conferences.
-
-## Running the documentation
-
-This repository is intended to be cloned and modified for organization-specific scenarios. All files are text-based (MarkDown format, by default) for convenient editing and collaboration using Git. A DocFX file is also provided to generate static HTML from the repository's contents.
-
-To generate the content as a website (on localhost port 8081), please run the following from the 'docs' directory of the repository:
-
-```azurepowershell
-docfx docfx.json --serve -p 8081
+```sh
+git clone https://github.com/data-engine-thinking/samples.git
+cd samples
+pnpm install      # install dependencies
+pnpm dev          # starts dev server at http://localhost:2330
 ```
+
+Then open <http://localhost:2330>. Changes to pages (`src/content/docs/`) and to
+code samples (`code/`) hot-reload in the browser.
+
+To build and preview the site exactly as it is published:
+
+```sh
+pnpm build        # generate the static site into dist/
+pnpm preview      # serve the built site locally
+```
+
+> In-site search is generated by Pagefind during `pnpm build`, so it works in
+> `pnpm preview` but not in `pnpm dev`.
+
+## Layout
+
+| Path | Contents |
+| --- | --- |
+| `src/content/docs/` | All pages: chapters, patterns, sample setup, about, license |
+| `code/` | Standalone SQL / Handlebars / metadata samples, organized by chapter |
+| `astro.config.ts` | Site config, navigation sidebar, fonts |
+| `src/styles/custom.css` | Brand theme layer over Starlight |
+
+## Code samples
+
+The runnable samples live under `code/`, mirroring the chapter and pattern
+structure, so they can be opened, edited, and run on their own. Pages pull them
+in at build time (`remark-code-import`), so editing a file under `code/` and
+rebuilding updates the corresponding page — the page and the file never drift.
+
+Because they are plain files in the repository, you can browse or download any of
+them directly from GitHub under
+[`code/`](https://github.com/data-engine-thinking/samples/tree/main/code).
+
+## Contributing
+
+This is a living library. Improvements, new patterns, and fixes are welcome by Pull
+Request — small edits (typos, clarity, examples) are just as valuable as new patterns.
+
+## License
+
+Distributed under the [GNU General Public License v3.0](LICENSE.md).

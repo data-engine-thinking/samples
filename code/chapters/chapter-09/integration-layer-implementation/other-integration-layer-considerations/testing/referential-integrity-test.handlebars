@@ -1,0 +1,33 @@
+{{#each dataObjectMappings}}
+{{#if @first}}
+
+BEGIN
+  DECLARE @TestResult VARCHAR(10) = 'Fail';
+  DECLARE @TestOutput VARCHAR(MAX);
+  DECLARE @Issues INT = 0;
+  BEGIN TRY
+    SELECT @Issues = COUNT(*)
+    FROM [{{targetDataObject.name}}] sat
+    WHERE NOT EXISTS
+    (
+    {{#each relationships}}
+      SELECT 1 FROM [{{dataObject.name}}] hub
+      WHERE 1=1
+      {{#each businessKeyDefinitions}} AND sat.{{surrogateKey}} = hub.{{surrogateKey}}{{/each}}
+    {{/each}}
+    )
+    SET @TestOutput = CONVERT(VARCHAR(10),@Issues)+' issue(s) were found.';
+    IF @Issues = 0
+      BEGIN
+        SET @TestResult = 'Pass'
+      END
+  END TRY
+  BEGIN CATCH
+    SET @TestOutput = ERROR_MESSAGE();
+    SET @TestResult = 'Fail'
+  END CATCH
+
+  SELECT @TestOutput AS [OUTPUT], @TestResult AS [RESULT];
+END
+{{/if}}
+{{/each}}

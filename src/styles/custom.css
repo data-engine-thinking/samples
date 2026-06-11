@@ -1,0 +1,199 @@
+/* =============================================================
+   Data Engine Thinking — light brand layer over Starlight.
+
+   Deliberately minimal: we keep Starlight's built-in light/dark
+   theming and only override fonts, the content measure, the panel
+   widths, line spacing, the brand accent, and the note color.
+   ============================================================= */
+
+:root {
+  /* Roboto stacks — providers are declared in astro.config.ts. */
+  --sl-font: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --sl-font-mono: var(--font-roboto-mono), ui-monospace, monospace;
+
+  /* Content measure + side panels. */
+  --sl-content-width: 52rem;
+  --sl-sidebar-width: 22rem;
+
+  /* Tighter line spacing, close to the previous site (~1.43). */
+  --sl-line-height: 1.4;
+
+  /* Calmer heading scale than Starlight's defaults. */
+  --sl-text-h1: 1.75rem;
+  --sl-text-h2: 1.5rem;
+  --sl-text-h3: 1.25rem;
+  --sl-text-h4: 1.125rem;
+}
+
+/* Reserve the scrollbar gutter so header chrome doesn't shift a few
+   pixels between short and long pages. */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* =============================================================
+   Brand accent — blue, matching the Data Engine Thinking wordmark
+   and the previous site's link color (#1d4ed8). Starlight
+   derives link, focus, and active-nav colors from these tokens.
+   ============================================================= */
+:root {
+  --sl-color-accent-low: #182a59;
+  --sl-color-accent: #2f5fd0;
+  --sl-color-accent-high: #c5d6f7;
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #d4e2fb;
+  --sl-color-accent: #1f54c8;
+  --sl-color-accent-high: #14275a;
+}
+
+/* =============================================================
+   Header layout — the Starlight header is a CSS grid at desktop.
+   Make the first (logo) column absorb the slack so the search box
+   and the right-hand controls (social, theme) sit on the right.
+   ============================================================= */
+.header {
+  /* 1fr logo column absorbs the slack (search + controls sit right); the
+     middle column is a fixed, comfortable width for the search box. */
+  grid-template-columns: 1fr 20rem auto;
+}
+
+/* The wordmark reads low in the header band (the "g" descenders pull its
+   visual weight down), so nudge it up to sit optically centered. */
+.site-title {
+  transform: translateY(-4px);
+}
+
+/* =============================================================
+   Swarm background — the book's "murmuration" marketing graphic
+   as a wash behind the top of a page, tinted per chapter (the
+   colour is set on <html data-swarm> by src/components/Head.astro,
+   from the URL). A white gradient fades it out so it never
+   competes with the body text.
+   ============================================================= */
+[data-swarm] main {
+  background-image:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 20rem, #fff 28rem),
+    var(--det-swarm-img);
+  background-repeat: no-repeat;
+  background-position: center top;
+  /* swarm stretched to the full section width at a fixed height, so the whole
+     dense wave shows edge-to-edge; the gradient holds it bold up top, then
+     dissolves it to white by ~28rem so it never bleeds into the body text. */
+  background-size: 100% 28rem, 100% 26rem;
+}
+[data-swarm='blue'] {
+  --det-swarm-img: url('/img/swarm-blue.png');
+}
+[data-swarm='grey'] {
+  --det-swarm-img: url('/img/swarm-grey.png');
+}
+[data-swarm='yellow'] {
+  --det-swarm-img: url('/img/swarm-yellow.png');
+}
+[data-swarm='orange'] {
+  --det-swarm-img: url('/img/swarm-orange.png');
+}
+[data-swarm='lightgreen'] {
+  --det-swarm-img: url('/img/swarm-lightgreen.png');
+}
+[data-swarm='darkgreen'] {
+  --det-swarm-img: url('/img/swarm-darkgreen.png');
+}
+
+/* =============================================================
+   Right-hand "On this page" rail — more compact, so the reading
+   column has more breathing room.
+   ============================================================= */
+.right-sidebar-container {
+  width: var(--det-toc-width, 18rem);
+  min-width: var(--det-toc-width, 18rem);
+  flex: 0 0 auto;
+}
+
+/* Let the middle pane fill the row and center the reading column, so on
+   wide screens the TOC sits at the right edge instead of leaving a wide
+   empty band out there. */
+.main-pane {
+  width: 100%;
+  --sl-content-margin-inline: auto;
+}
+
+/* =============================================================
+   :::note asides — gentle light-blue, echoing the previous
+   site's NOTE color (Bootstrap alert-info, #d9edf7). A matching
+   muted blue is used in dark mode so the callout doesn't glare.
+   ============================================================= */
+.starlight-aside--note {
+  --sl-color-asides-border: #7cb6d6;
+  --sl-color-asides-text-accent: #1f6090;
+  background-color: #d9edf7;
+  color: #1c2a36;
+}
+:root[data-theme='dark'] .starlight-aside--note {
+  --sl-color-asides-border: #3f6f92;
+  --sl-color-asides-text-accent: #a9d2ec;
+  background-color: #12273a;
+  color: var(--sl-color-white);
+}
+
+/* =============================================================
+   Sidebar hierarchy — the chapter tree nests several levels deep and
+   Starlight paints every group header the same strong color, so it
+   reads as a wall of black. Keep the chapters (depth 2) strong, then
+   step the section groups below them down to grey. The greys are
+   Starlight's theme-aware tokens, so this holds in light and dark mode.
+   Scoped via .group-label so it only touches sidebar groups — never a
+   content <details> or the "On this page" rail.
+   ============================================================= */
+details details details summary .group-label .large {
+  color: var(--sl-color-gray-2);
+}
+details details details details summary .group-label .large {
+  color: var(--sl-color-gray-3);
+}
+
+/* =============================================================
+   Resizable side panels — drag the divider on a panel's inner edge
+   (double-click resets). Behavior lives in src/components/Head.astro;
+   this is the styling. Desktop only — below the large breakpoint the
+   panels are drawers.
+   ============================================================= */
+@media (min-width: 72rem) {
+  /* Drag handles — fixed bars tracking each panel's inner edge. */
+  .det-resizer {
+    position: fixed;
+    top: calc(var(--sl-nav-height, 4rem) + 2.5rem);
+    bottom: 0;
+    width: 10px;
+    cursor: col-resize;
+    z-index: 30;
+    touch-action: none;
+  }
+  .det-resizer-sidebar {
+    inset-inline-start: var(--sl-sidebar-width);
+    transform: translateX(-50%);
+  }
+  .det-resizer-toc {
+    inset-inline-end: var(--det-toc-width, 18rem);
+    transform: translateX(50%);
+  }
+  .det-resizer::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 50%;
+    width: 1px;
+    background: var(--sl-color-hairline);
+    transition: width 0.15s, background-color 0.15s;
+  }
+  .det-resizer:hover::after,
+  body.det-resizing .det-resizer::after {
+    width: 3px;
+    background: var(--sl-color-accent);
+  }
+  body.det-resizing {
+    cursor: col-resize;
+    user-select: none;
+  }
+}

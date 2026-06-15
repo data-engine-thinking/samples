@@ -22,7 +22,7 @@ When adopting the framework:
 
 This repository supports step 2 (and helps make step 3 repeatable).
 
-On several occasions, the patterns mention other frameworks, for instance the control framework for data logistics. An example of this is the DIRECT framework as maintained in the [DIRECT repository](https://github.com/data-solution-automation-engine/DIRECT).
+On several occasions, the patterns mention other frameworks, for instance the control framework for data logistics. An example of this is the DIRECT framework as maintained in the [DIRECT repository](https://github.com/data-engine-thinking/DIRECT).
 
 ## Patterns
 

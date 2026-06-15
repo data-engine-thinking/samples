@@ -152,6 +152,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Data Engine Thinking Samples',
+      favicon: '/favicon.ico',
       logo: { src: './src/assets/logo.png', alt: 'Data Engine Thinking', replacesTitle: true },
       customCss: ['./src/styles/custom.css'],
       components: {

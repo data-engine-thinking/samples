@@ -28,14 +28,6 @@ As an example, consider these syntax differences between Handlebars and Jinja.
 | **Loop**           | `{{#each items}}<li>{{this}}</li>{{/each}}`      | `{% for item in items %}<li>{{ item }}</li>{% endfor %}` |
 | **Function / Logic** | *Not allowed in template* (must pre-process)   | `{% set total = price * quantity %}`                |
 
-## Frameworks
-
-An easy way to start working with templating engines, is to download the [Schema for Data Solution automation](https://github.com/data-solution-automation-engine/data-warehouse-automation-metadata-schema) repository and execute/modify the examples made available here.
-
-## Software
-
-* [Agnostic Data Labs (ADL)](https://agnosticdatalabs.com/) is a new data automation solution that follows the concepts and patterns described in Data Engine Thinking. It requires registration, but provides a convenient user interface to simplify working with templates - and provides a large repository of runnable samples.
-
 ## Giving It A Go
 
 The template samples directory in this repository provides runnable examples — see [Running a Sample Template](/chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/templating-engines/running-a-sample-template/).

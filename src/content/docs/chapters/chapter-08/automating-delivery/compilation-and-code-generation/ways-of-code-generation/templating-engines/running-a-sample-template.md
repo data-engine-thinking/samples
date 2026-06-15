@@ -4,7 +4,7 @@ title: "Running a Sample Template"
 
 This example shows how a templating engine turns a metadata file and a template into a working SQL statement.
 
-Download the `RunDsaAutomation` executable from the [data solution automation releases page](https://github.com/data-solution-automation-engine/data-solution-automation-metadata-schema/releases/) and place it in a working directory with an `input` folder for the metadata and a `templates` folder for the template.
+Download the `RunDsaAutomation` executable from the [data solution automation releases page](https://github.com/data-engine-thinking/data-solution-automation-metadata-schema/releases/) and place it in a working directory with an `input` folder for the metadata and a `templates` folder for the template.
 
 ## The metadata
 

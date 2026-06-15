@@ -8,7 +8,7 @@
     "chapters/chapter-08/automating-delivery/a-schema-for-data-solution-automation/schema-definition": 236,
     "chapters/chapter-08/automating-delivery/compilation-and-code-generation": 244,
     "chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation": 246,
-    "chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/alternatives-to-templating-engines": 247,
+    "chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/alternatives-to-templating-engines": 248,
     "chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/domain-specific-languages": 250,
     "chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/templating-engines": 247,
     "chapters/chapter-09/integration-layer-implementation": 532,
@@ -46,5 +46,6 @@
     "patterns/design-patterns": 95,    
     "patterns/solution-patterns": 96,
     "patterns/solution-patterns/solution-pattern-sql-server-family-compacting-as-a-post-process": 96,
+    "patterns/solution-patterns/solution-pattern-sql-server-family-functional-compacting": 96,
     "patterns/solution-patterns/solution-pattern-sql-server-family-cdc-and-replication": 96
 }

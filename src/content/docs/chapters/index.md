@@ -19,7 +19,7 @@ Throughout *Data Engine Thinking*, short `dtng.link` URLs point to pages on this
 | `dtng.link/xucf2` | 6 | [Data Logistics Control](/chapters/chapter-06/architecture-overview/supporting-frameworks/data-logistics-control/) |
 | `dtng.link/viwz0` | 8 | [A Schema for Data Solution Automation](/chapters/chapter-08/automating-delivery/a-schema-for-data-solution-automation/) |
 | `dtng.link/hb2ay` | 8 | [Templating Engines](/chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/templating-engines/) |
-| `dtng.link/feww1` | 8 | [Templating Engines](/chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/templating-engines/) |
+| `dtng.link/feww1` | 8 | [Alternatives to Templating Engines](/chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/alternatives-to-templating-engines/) |
 | `dtng.link/emlz8` | 8 | [Domain-Specific Languages](/chapters/chapter-08/automating-delivery/compilation-and-code-generation/ways-of-code-generation/domain-specific-languages/) |
 | `dtng.link/yq0v8` | 9 | [Landing Area - Design Patterns](/chapters/chapter-09/staging-layer-implementation/landing-area/design-patterns/) |
 | `dtng.link/831oy` | 9 | [Landing Area - Solution Patterns](/chapters/chapter-09/staging-layer-implementation/landing-area/solution-patterns/) |

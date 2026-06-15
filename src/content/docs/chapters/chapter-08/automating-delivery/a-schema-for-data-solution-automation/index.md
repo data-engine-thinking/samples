@@ -8,7 +8,7 @@ This page is referenced in *Data Engine Thinking* (Chapter 8) via `dtng.link/viw
 
 ## Frameworks
 
-The repository for the schema for data solution automation is available in the [data solution automation schema](https://github.com/data-solution-automation-engine/data-warehouse-automation-metadata-schema) repository.
+The repository for the schema for data solution automation is available in the [data solution automation schema](https://github.com/data-engine-thinking/data-solution-automation-metadata-schema) repository.
 
 This repository includes:
 
@@ -19,4 +19,4 @@ This repository includes:
 
 ## Adoption In Software
 
-The documentation pages for Agnostic Data Labs (ADL) contain a [complete description of the schema](https://data-solution-automation-engine.github.io/data-warehouse-automation-metadata-schema/) as applied in the software - including the [Class Library](https://data-solution-automation-engine.github.io/data-warehouse-automation-metadata-schema/api/DataWarehouseAutomation.DwaModel.html).
+The documentation pages for Agnostic Data Labs (ADL) contain a [complete description of the schema](https://data-engine-thinking.github.io/data-solution-automation-metadata-schema/) as applied in the software, including the Class Library.

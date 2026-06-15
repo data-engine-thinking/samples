@@ -20,6 +20,7 @@ Every Solution Pattern uses the shared structure outlined in [Pattern Structure]
 - [SQL Server Family - Data Vault Satellite](/patterns/solution-patterns/solution-pattern-sql-server-family-data-vault-satellite/)
 - [SQL Server Family - Deriving End-Dating](/patterns/solution-patterns/solution-pattern-sql-server-family-deriving-end-dating/)
 - [SQL Server Family - Exception Bitmap](/patterns/solution-patterns/solution-pattern-sql-server-family-exception-bitmap/)
+- [SQL Server Family - Functional Compacting](/patterns/solution-patterns/solution-pattern-sql-server-family-functional-compacting/)
 - [SQL Server Family - Joining Objects in the Persistent Staging Area](/patterns/solution-patterns/solution-pattern-sql-server-family-joining-objects-in-the-persistent-staging-area/)
 - [SQL Server Family - Joining Two Time-Variant Objects](/patterns/solution-patterns/solution-pattern-sql-server-family-joining-two-time-variant-objects/)
 - [SQL Server Family - Landing Area](/patterns/solution-patterns/solution-pattern-sql-server-family-landing-area/)

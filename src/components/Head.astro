@@ -1,11 +1,27 @@
 ---
 import Default from '@astrojs/starlight/components/Head.astro';
+
+/* Swarm hero — only on the home + each chapter's intro page (not the
+   reading pages). Per-chapter tint; placeholder colours, confirm vs book.
+   Computed server-side so the (large) image can be preloaded. */
+const path = Astro.url.pathname.replace(/\/+$/, '');
+const chapter = path.match(/^\/chapters\/chapter-0*(\d+)$/);
+const swarm = chapter
+  ? ({ '6': 'orange', '8': 'lightgreen', '9': 'yellow', '11': 'darkgreen' }[chapter[1]] ?? null)
+  : path === ''
+    ? 'blue'
+    : null;
 ---
+
+{/* Let the browser paint a dark interstitial canvas for dark-mode users
+   between page navigations — without this, every navigation flashes white. */}
+<meta name="color-scheme" content="light dark" />
+{swarm && <link rel="preload" as="image" href={`/img/swarm-${swarm}.png`} />}
 
 <Default />
 
 {/* Restore persisted panel sizes/collapse before paint, to avoid a flash. */}
-<script is:inline>
+<script is:inline define:vars={{ swarm }}>
   try {
     var r = document.documentElement,
       s = window.localStorage;
@@ -13,16 +29,7 @@ import Default from '@astrojs/starlight/components/Head.astro';
     if (lw) r.style.setProperty('--sl-sidebar-width', lw);
     var rw = s.getItem('det:toc-w');
     if (rw) r.style.setProperty('--det-toc-width', rw);
-    /* Swarm hero — only on the home + each chapter's intro page (not the
-       reading pages). Per-chapter tint; placeholder colours, confirm vs book. */
-    var p = location.pathname.replace(/\/+$/, '');
-    var m = p.match(/^\/chapters\/chapter-0*(\d+)$/);
-    var sc = m
-      ? { '6': 'orange', '8': 'lightgreen', '9': 'yellow', '11': 'darkgreen' }[m[1]]
-      : p === ''
-        ? 'blue'
-        : null;
-    if (sc) r.setAttribute('data-swarm', sc);
+    if (swarm) r.setAttribute('data-swarm', swarm);
   } catch (e) {}
 </script>
 

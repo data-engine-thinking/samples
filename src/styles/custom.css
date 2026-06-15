@@ -68,18 +68,24 @@ html {
    Swarm background — the book's "murmuration" marketing graphic
    as a wash behind the top of a page, tinted per chapter (the
    colour is set on <html data-swarm> by src/components/Head.astro,
-   from the URL). A white gradient fades it out so it never
-   competes with the body text.
+   from the URL). A gradient in the theme's background colour
+   fades it out so it never competes with the body text — white
+   in light mode, the dark page background in dark mode.
    ============================================================= */
 [data-swarm] main {
   background-image:
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 20rem, #fff 28rem),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--sl-color-bg) 45%, transparent) 20rem,
+      var(--sl-color-bg) 28rem
+    ),
     var(--det-swarm-img);
   background-repeat: no-repeat;
   background-position: center top;
   /* swarm stretched to the full section width at a fixed height, so the whole
      dense wave shows edge-to-edge; the gradient holds it bold up top, then
-     dissolves it to white by ~28rem so it never bleeds into the body text. */
+     dissolves it into the page background by ~28rem so it never bleeds into
+     the body text. */
   background-size: 100% 28rem, 100% 26rem;
 }
 [data-swarm='blue'] {

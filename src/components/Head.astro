@@ -4,10 +4,16 @@ import Default from '@astrojs/starlight/components/Head.astro';
 /* Swarm hero — only on the home + each chapter's intro page (not the
    reading pages). Per-chapter tint; placeholder colours, confirm vs book.
    Computed server-side so the (large) image can be preloaded. */
+const SWARM_BY_CHAPTER: Record<string, string> = {
+  '6': 'orange', '8': 'lightgreen', '9': 'yellow', '11': 'darkgreen',
+};
 const path = Astro.url.pathname.replace(/\/+$/, '');
 const chapter = path.match(/^\/chapters\/chapter-0*(\d+)$/);
-const swarm = chapter
-  ? ({ '6': 'orange', '8': 'lightgreen', '9': 'yellow', '11': 'darkgreen' }[chapter[1]] ?? null)
+// Bound separately because the capture group is `string | undefined` under
+// noUncheckedIndexedAccess, and undefined cannot be used as an index.
+const chapterNo = chapter?.[1];
+const swarm = chapterNo
+  ? (SWARM_BY_CHAPTER[chapterNo] ?? null)
   : path === ''
     ? 'blue'
     : null;

@@ -1,0 +1,4 @@
+# Shell scripts must keep LF endings. deploy.sh is run on macOS/Linux, and a
+# CRLF checkout breaks the shebang ("bad interpreter: /usr/bin/env bash^M"),
+# which is easy to introduce by editing on Windows.
+*.sh text eol=lf

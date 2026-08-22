@@ -404,3 +404,10 @@ FodyWeavers.xsd
 dist/
 .astro/
 pnpm-debug.log*
+
+# Deploy credentials — never commit these (see deploy-ftp.sh --help)
+.netrc
+_netrc
+*.netrc
+.env
+.env.*

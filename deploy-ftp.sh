@@ -10,18 +10,16 @@
 #         ./deploy-ftp.sh --go --skip-build   (upload the existing dist/)
 #         ./deploy-ftp.sh --help
 #
-# Credentials are read from the environment and are never stored in this repo:
+# Credentials live outside this repository — either in ~/.netrc (preferred) or
+# in environment variables. See `./deploy-ftp.sh --help` for both forms.
 #
 #   export DET_FTP_HOST=ftp.your-host.example
-#   export DET_FTP_USER=your-user
-#   export DET_FTP_PASS='your-password'
-#   ./deploy-ftp.sh            # check the dry run first
+#   ./deploy-ftp.sh            # dry run: no credentials needed, no connection
 #   ./deploy-ftp.sh --go
 #
-# They are passed to curl through a config file on stdin, so the password never
-# appears in the process list where other users on the machine could read it.
-# Prefer `unset DET_FTP_PASS` when you are done, and remember that a password
-# typed into a shell also lands in that shell's history file.
+# Whichever form is used, the values reach curl through a config file on stdin,
+# so the password never appears in the process list where other users on the
+# machine could read it.
 
 set -euo pipefail
 
@@ -29,6 +27,11 @@ set -euo pipefail
 FTP_HOST="${DET_FTP_HOST:-}"
 FTP_USER="${DET_FTP_USER:-}"
 FTP_PASS="${DET_FTP_PASS:-}"
+
+# Where the password lives. If DET_FTP_PASS is not set, curl reads the
+# credentials from this netrc file instead — that keeps the password out of the
+# environment and out of your shell history. See --help for the file format.
+NETRC_FILE="${DET_FTP_NETRC_FILE:-${HOME}/.netrc}"
 
 # Remote directory the site lives in, relative to where the FTP login lands.
 # Many hosting accounts drop you straight into the web root, in which case "/"
@@ -58,18 +61,46 @@ Options:
                  writes at all. This is the default on purpose.
   --go           Actually upload.
   --skip-build   Reuse the existing dist/ instead of running `pnpm build`.
+  --plain        Use plain FTP instead of FTPS. Required if the host does not
+                 offer FTPS; note the password is then sent in clear text.
   --help, -h     Show this help.
+
+Where to put the credentials
+----------------------------
+Two options. The netrc file is preferred: the password stays out of the
+environment, out of `ps`, and out of your shell history.
+
+  1. netrc file (default: ~/.netrc, override with DET_FTP_NETRC_FILE)
+
+       machine ftp.your-host.example
+       login your-user
+       password your-password
+
+     Then lock it down:  chmod 600 ~/.netrc
+     Only DET_FTP_HOST needs to be set; the script uses netrc automatically
+     whenever DET_FTP_PASS is unset.
+
+  2. Environment variables, for one-off or CI use:
+
+       export DET_FTP_USER=your-user
+       export DET_FTP_PASS='your-password'
+
+     Prefix the command with a space in most shells to keep it out of history,
+     and `unset DET_FTP_PASS` when finished.
+
+Never put credentials in a file inside this repository.
 
 Required environment:
   DET_FTP_HOST   FTP hostname
-  DET_FTP_USER   FTP username
-  DET_FTP_PASS   FTP password
 
 Optional environment:
+  DET_FTP_USER   FTP username (needed only without netrc)
+  DET_FTP_PASS   FTP password (if unset, the netrc file is used)
+  DET_FTP_NETRC_FILE
+                 Path to the netrc file (default: ~/.netrc)
   DET_FTP_PATH   Remote directory the site lives in (default: /)
   DET_FTP_INSECURE=1
-                 Allow plain FTP instead of requiring FTPS. Sends the password
-                 in clear text — avoid unless the host cannot do FTPS.
+                 Same as --plain.
   DEPLOY_MIN_HTML_FILES
                  Minimum pages in dist/ before upload is allowed (default: 50)
 
@@ -93,6 +124,7 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --go)         DO_DEPLOY="yes" ;;
         --skip-build) SKIP_BUILD="yes" ;;
+        --plain)      REQUIRE_TLS="1" ;;
         --help|-h)    show_help ;;
         *)
             echo "Unknown option: $1" >&2
@@ -165,14 +197,37 @@ if [[ "${DO_DEPLOY}" != "yes" ]]; then
 fi
 
 # ── Credentials (only needed for a real upload) ───────────────────────────────
+USE_NETRC="no"
+if [[ -z "${FTP_PASS}" ]]; then
+    USE_NETRC="yes"
+fi
+
 missing=()
 [[ -z "${FTP_HOST}" ]] && missing+=("DET_FTP_HOST")
-[[ -z "${FTP_USER}" ]] && missing+=("DET_FTP_USER")
-[[ -z "${FTP_PASS}" ]] && missing+=("DET_FTP_PASS")
+if [[ "${USE_NETRC}" == "no" ]]; then
+    [[ -z "${FTP_USER}" ]] && missing+=("DET_FTP_USER")
+fi
 if (( ${#missing[@]} > 0 )); then
     echo "ERROR: missing required environment: ${missing[*]}" >&2
     echo "See './deploy-ftp.sh --help'." >&2
     exit 1
+fi
+
+if [[ "${USE_NETRC}" == "yes" ]]; then
+    if [[ ! -f "${NETRC_FILE}" ]]; then
+        echo "ERROR: no password given and no netrc file at ${NETRC_FILE}." >&2
+        echo "Either create that file (see './deploy-ftp.sh --help') or set DET_FTP_PASS." >&2
+        exit 1
+    fi
+    # Warn if the file is group/world readable. Windows filesystems often report
+    # permissions that do not mean much, so this is advisory rather than fatal.
+    perms="$(stat -c '%a' "${NETRC_FILE}" 2>/dev/null || echo '')"
+    if [[ -n "${perms}" && "${perms}" != "600" && "${perms}" != "400" ]]; then
+        echo "Note: ${NETRC_FILE} has mode ${perms}; 600 is the safer choice (chmod 600)."
+    fi
+    echo "Credentials: ${NETRC_FILE}"
+else
+    echo "Credentials: DET_FTP_USER / DET_FTP_PASS from the environment"
 fi
 
 # ── Upload ───────────────────────────────────────────────────────────────────
@@ -187,7 +242,11 @@ build_curl_config() {
     # Escape backslashes and double quotes for curl's config format.
     esc() { printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'; }
 
-    printf 'user = "%s:%s"\n' "$(esc "${FTP_USER}")" "$(esc "${FTP_PASS}")"
+    if [[ "${USE_NETRC}" == "yes" ]]; then
+        printf 'netrc-file = "%s"\n' "$(esc "${NETRC_FILE}")"
+    else
+        printf 'user = "%s:%s"\n' "$(esc "${FTP_USER}")" "$(esc "${FTP_PASS}")"
+    fi
     printf 'ftp-create-dirs\n'
     printf 'silent\n'
     printf 'show-error\n'

@@ -48,6 +48,20 @@ MIN_HTML_FILES="${DEPLOY_MIN_HTML_FILES:-50}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DIST_DIR="${SCRIPT_DIR}/dist"
 
+# Local paths handed to curl must be in a form curl itself understands. Under
+# Git Bash / MSYS2 the shell uses POSIX paths (/c/Users/...), and while MSYS2
+# rewrites those in command-line arguments, it does NOT touch values read from a
+# config file — curl then fails with "cannot open" on every file. cygpath -m
+# produces the Windows path with forward slashes (C:/Users/...), which curl
+# accepts and which needs no backslash escaping. On Linux/macOS this is a no-op.
+native_path() {
+    if command -v cygpath >/dev/null 2>&1; then
+        cygpath -m "$1"
+    else
+        printf '%s' "$1"
+    fi
+}
+
 show_help() {
     cat <<'HELP'
 Usage: ./deploy-ftp.sh [OPTIONS]
@@ -243,7 +257,7 @@ build_curl_config() {
     esc() { printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'; }
 
     if [[ "${USE_NETRC}" == "yes" ]]; then
-        printf 'netrc-file = "%s"\n' "$(esc "${NETRC_FILE}")"
+        printf 'netrc-file = "%s"\n' "$(esc "$(native_path "${NETRC_FILE}")")"
     else
         printf 'user = "%s:%s"\n' "$(esc "${FTP_USER}")" "$(esc "${FTP_PASS}")"
     fi
@@ -255,8 +269,14 @@ build_curl_config() {
         printf 'ssl-reqd\n'
     fi
 
+    # Convert the root once rather than per file — cygpath is a process launch,
+    # and there are a few hundred of these.
+    local DIST_NATIVE
+    DIST_NATIVE="$(native_path "${DIST_DIR}")"
+    DIST_NATIVE="${DIST_NATIVE%/}"
+
     ( cd "${DIST_DIR}" && find . -type f | sed 's|^\./||' | sort ) | while IFS= read -r rel; do
-        printf 'upload-file = "%s"\n' "$(esc "${DIST_DIR}/${rel}")"
+        printf 'upload-file = "%s"\n' "$(esc "${DIST_NATIVE}/${rel}")"
         printf 'url = "%s"\n' "$(esc "${SCHEME}://${FTP_HOST}${REMOTE_PATH}${rel}")"
     done
 }

@@ -1,0 +1,20 @@
+overrides:
+  # Force patched fast-uri (host confusion via backslash authority introducer /
+  # failed IDN canonicalization). Pulled in deep under @astrojs/check ->
+  # language-server -> volar-service-yaml -> yaml-language-server -> ajv.
+  fast-uri: ^3.1.5
+  # Force patched yaml (stack overflow on deeply nested collections).
+  # volar-service-yaml pulls in a vulnerable 2.7.x; vite already ships a safe 2.9.x.
+  yaml: ^2.8.3
+  # Force patched js-yaml (GHSA-5p4m-2wfm-xmqj: quadratic CPU consumption resolving
+  # !!omap). astro/starlight resolve 4.3.1, but @astrojs/internal-helpers pins 4.3.0.
+  js-yaml: ^4.3.1
+  # Force patched postcss (GHSA-fxqj-rqcc-2cmp: attacker-controlled sourceMappingURL
+  # reads arbitrary .map files when `from` is unset). Pinned old by
+  # starlight -> astro-expressive-code -> expressive-code -> @expressive-code/core.
+  postcss: ^8.5.26
+  # Force patched nanoid (GHSA-2v37-7h3g-55p8: custom generators can loop
+  # indefinitely when size is zero).
+  nanoid: ^3.3.18
+  # Force patched svgo (4.0.0-4.0.1 are vulnerable; fixed in 4.0.2).
+  svgo: ^4.0.2
